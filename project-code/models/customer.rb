@@ -1,4 +1,5 @@
 require_relative('../db/sql_runner.rb')
+require('pry')
 
 class Customer
 
@@ -12,6 +13,29 @@ attr_reader :id, :name
     @address = options['address']
     @account_balance = options['account_balance'].to_i
     @warnings = options['warnings'].to_i
+  end
+
+  def get_contact_info
+    return [@phone, @email, @address]
+  end
+
+  def get_account_balance
+    return @account_balance
+  end
+
+  def get_warnings
+    return @warnings
+  end
+
+  def get_warnings_msg
+    case @warnings
+    when 0
+      return "All OK"
+    when 2
+      return "Customer is Banned."
+    else
+      return "Warning: Customer has previously returned items late or damaged."
+    end
   end
 
   def save
@@ -34,10 +58,12 @@ attr_reader :id, :name
   end
 
   def self.find_by_name(name)
-    sql = 'SELECT * FROM customers WHERE name = $1;'
+    # sql = 'SELECT name, id  FROM customers WHERE soundex(name) = soundex($1) ORDER BY name;'
+# need to find how to install soundex or similar function
+sql = 'SELECT *  FROM customers WHERE name = $1;'
     values = [name]
-    customer = SqlRunner.run(sql, values).first
-    return Customer.new(customer) if customer != nil
+    customer_list = SqlRunner.run(sql, values).map { |customer| Customer.new(customer) }
+    return customer_list
   end
 
   def self.delete_all
@@ -49,6 +75,14 @@ attr_reader :id, :name
     sql = "DELETE FROM customers WHERE id = $1"
     values = [@id]
     SqlRunner.run( sql, values )
+  end
+
+  def update(column, contents)
+    sql = "UPDATE customers SET $1 = $2 WHERE id = $3;"
+  # tested in Postico and this works: UPDATE customers SET phone = '555-1234' WHERE id = 278;
+    values=[column, contents, @id]
+    # binding.pry
+    SqlRunner.run(sql, values)
   end
 
 end # end class

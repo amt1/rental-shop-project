@@ -50,6 +50,23 @@ class TestCustomer < MiniTest::Test
     assert_nil(@my_test_customer.id)
   end
 
+  def test_get_contact_info
+    contact_details = @tommy.get_contact_info
+    assert_equal(['555-3456','tommy@fakeemail.com','3 The Road, Happytown'], contact_details)
+  end
+
+  def test_get_account_balance
+    assert_equal(100, @rolf.get_account_balance)
+  end
+
+  def test_get_warnings
+    assert_equal(0, @stanley.get_warnings)
+  end
+
+  def test_get_warnings_msg
+    assert_equal("Customer is Banned.", @tommy.get_warnings_msg)
+  end
+
   def test_customer1_saved
     @my_test_customer.save
     # p 'saved...'
@@ -89,6 +106,23 @@ class TestCustomer < MiniTest::Test
     @redshirt.delete
     # test it was deleted
     assert_nil(Customer.find_by_id(@redshirt.id))
+  end
+
+  def test_find_customer_by_name
+    Customer.delete_all
+    @stanley.save
+    @rolf.save
+    @tommy.save
+    # binding.pry
+    assert_equal(@stanley.id, Customer.find_by_name(@stanley.name).first.id)
+  end
+
+  def test_update_customer
+    @rolf.save
+    assert_equal('555-5678', @rolf.get_contact_info[0])
+    @rolf.update('phone', '555-1234')
+    assert_equal('555-1234', @rolf.get_contact_info[0])
+
   end
 
 end # end class
