@@ -120,9 +120,24 @@ class TestCustomer < MiniTest::Test
   def test_update_customer
     @rolf.save
     assert_equal('555-5678', @rolf.get_contact_info[0])
-    @rolf.update('phone', '555-1234')
+    @rolf.set_phone('555-1234')
+    @rolf.update
     assert_equal('555-1234', @rolf.get_contact_info[0])
+# binding.pry
+  end
 
+  def test_update_customer__invalid_email
+    # @rolf.save
+    # assert_equal('rolf@fakeemail.com', @rolf.get_contact_info[1])
+    # @rolf.set_email('rolffakeemail.com')
+    # @rolf.update
+    # # binding.pry
+    # assert_equal('rolf@fakeemail.com', @rolf.get_contact_info[0])
+# binding.pry
+
+# Resut: The database refuses an invalid email address.
+# To use this feature safely I will need to add the same email validation checks
+# to my customer data entry form
   end
 
 end # end class

@@ -38,6 +38,26 @@ attr_reader :id, :name
     end
   end
 
+  def set_phone(new_phone)
+      @phone = new_phone
+  end
+
+  def set_email(new_email)
+      @email = new_email
+  end
+
+  def set_address(new_address)
+      @address = new_address
+  end
+
+  def add_to_account_balance(amount)
+    @account_balance += amount
+  end
+
+  def set_warnings(level)
+    @warnings = level
+  end
+
   def save
     sql = 'INSERT INTO customers (name, phone, email, address, account_balance, warnings)
     VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;'
@@ -77,11 +97,14 @@ sql = 'SELECT *  FROM customers WHERE name = $1;'
     SqlRunner.run( sql, values )
   end
 
-  def update(column, contents)
-    sql = "UPDATE customers SET $1 = $2 WHERE id = $3;"
+  def update
+    # sql = "UPDATE customers SET $1 = $2 WHERE id = $3;"
   # tested in Postico and this works: UPDATE customers SET phone = '555-1234' WHERE id = 278;
-    values=[column, contents, @id]
+    # values=[column, contents, @id]
     # binding.pry
+    sql = 'UPDATE customers SET (name, phone, email, address, account_balance, warnings)
+    = ($1, $2, $3, $4, $5, $6) WHERE id = $7;'
+    values = [@name, @phone, @email, @address, @account_balance, @warnings, @id]
     SqlRunner.run(sql, values)
   end
 
