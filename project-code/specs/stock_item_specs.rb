@@ -84,10 +84,25 @@ class TestStockItem < MiniTest::Test
 
   def test_update_stock_item
     @redshirt.save
-    assert_equal('Red', @redshirt.colour)
+    assert_equal('Red', StockItem.find_by_id(@redshirt.id).colour)
     @redshirt.set_colour('Black')
     @redshirt.update
-    assert_equal('Black', @redshirt.colour)
+    assert_equal('Black', StockItem.find_by_id(@redshirt.id).colour)
+    @redshirt.set_name('Ensign Blackshirt')
+    @redshirt.update
+    assert_equal('Ensign Blackshirt', StockItem.find_by_id(@redshirt.id).name)
+    @redshirt.set_size_code('1')
+    @redshirt.update
+    assert_equal('1', StockItem.find_by_id(@redshirt.id).size)
+    @redshirt.set_status_code('2')
+    @redshirt.update
+    assert_equal('2', StockItem.find_by_id(@redshirt.id).get_status_code)
+    @redshirt.set_cleaning_instructions('Nuke it from Orbit')
+    @redshirt.update
+    assert_equal('Nuke it from Orbit', StockItem.find_by_id(@redshirt.id).get_cleaning_instructions)
+    @redshirt.set_measurements('Massive, just massive')
+    @redshirt.update
+    assert_equal('Massive, just massive', StockItem.find_by_id(@redshirt.id).get_measurements)
   # binding.pry
   end
 end # end class
