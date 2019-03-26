@@ -65,4 +65,29 @@ class TestStockItem < MiniTest::Test
     assert_equal(@redshirt.name, StockItem.find_by_id(@redshirt.id).name)
   end
 
+  def test_stock_delete_all
+    StockItem.delete_all
+    assert_nil(StockItem.find_by_id(1))
+    # remember, the order of running the tests is randomized
+  end
+
+  def test_delete_1_item
+    StockItem.delete_all
+    @redshirt.save
+    StockItem.find_by_id(@redshirt.id)
+    # check it was saved
+    assert_equal(@redshirt.name, StockItem.find_by_id(@redshirt.id).name)
+    @redshirt.delete
+    # test it was deleted
+    assert_nil(StockItem.find_by_id(@redshirt.id))
+  end
+
+  def test_update_stock_item
+    @redshirt.save
+    assert_equal('Red', @redshirt.colour)
+    @redshirt.set_colour('Black')
+    @redshirt.update
+    assert_equal('Black', @redshirt.colour)
+  # binding.pry
+  end
 end # end class

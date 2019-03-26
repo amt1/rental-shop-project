@@ -26,7 +26,7 @@ attr_reader :id, :name, :size, :status, :colour
     VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;'
     values = [@name, @size, @measurements, @cleaning_instructions, @status, @colour]
     @id = SqlRunner.run(sql, values).first['id'].to_i
-    
+
 # originally tried to store multiple themes using an array, which seemed like it almost worked.
 # abandoned this approach for a join table now. Keeping code commented out below for now
     # this is the correct syntax, found using Postico:
@@ -49,6 +49,32 @@ attr_reader :id, :name, :size, :status, :colour
     values = [id]
     costume = SqlRunner.run(sql, values).first
     return StockItem.new(costume) if costume != nil
+  end
+
+  def self.find_by_name(name)
+    # here it would be good to match keywords using regular expressions
+  sql = 'SELECT *  FROM stock_items WHERE name = $1;'
+    values = [name]
+    stock_list = SqlRunner.run(sql, values).map { |costume| StockItem.new(costume) }
+    return stock_list
+  end
+
+  def self.delete_all
+    sql = 'DELETE FROM stock_items;'
+    SqlRunner.run(sql)
+  end
+
+  def delete
+    sql = "DELETE FROM stock_items WHERE id = $1"
+    values = [@id]
+    SqlRunner.run( sql, values )
+  end
+
+  def update
+    sql = 'UPDATE stock_items SET (name, size, measurements, cleaning_instructions, status, colour)
+    = ($1, $2, $3, $4, $5, $6) WHERE id = $7;'
+    values = [@name, @size, @measurements, @cleaning_instructions, @status, @colour, @id]
+    SqlRunner.run(sql, values)
   end
 
 ## end database CRUD functions
