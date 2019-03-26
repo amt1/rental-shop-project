@@ -52,5 +52,6 @@ CREATE TABLE stock_items (
   cleaning_instructions VARCHAR(255),
   status INT2 REFERENCES item_status_codes(id),
   themes INT2[],
+--  themes VARCHAR,
   colour colour_names
 );

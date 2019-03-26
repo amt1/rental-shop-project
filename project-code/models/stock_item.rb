@@ -14,8 +14,37 @@ attr_reader :id, :name, :size, :status, :themes, :colour
     @status = options['status']  # code to look up
     @themes = options['themes']  # array of codes to look up
     @colour = options['colour']
+
+    # p @themes
   end
 
+## start database CRUD functions
+
+  def save
+    # sql='INSERT INTO stock_items (name, size, measurements, cleaning_instructions, status, themes, colour)
+    # VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id;'
+
+    # this is the correct syntax, found using Postico:
+ sql="INSERT INTO stock_items
+ (name, size, measurements, cleaning_instructions, status, themes, colour)
+ VALUES ('Ensign Redshirt','1','Standard Size','Delicate Wash at 30, No Spin, No Tumble Dry','1',array[3,5],'Red') RETURNING id;"
+@id = SqlRunner.run(sql).first['id'].to_i
+# @id = SqlRunner.run(sql).first['id'].to_i
+# p 'array#{@themes}'
+    # values = [@name, @size, @measurements, @cleaning_instructions, @status, @themes, @colour]
+    # @id = SqlRunner.run(sql, values).first['id'].to_i
+  end
+
+  def self.find_by_id(id)
+    sql = 'SELECT * FROM stock_items WHERE id = $1;'
+    values = [id]
+    costume = SqlRunner.run(sql, values).first
+    return StockItem.new(costume) if costume != nil
+  end
+
+## end database CRUD functions
+
+## start getters and setters
   def set_name(new_name)
     @name = new_name
   end
@@ -27,7 +56,7 @@ attr_reader :id, :name, :size, :status, :themes, :colour
   def set_colour(new_colour)
     @colour = new_colour
   end
-  
+
   def get_measurements
     return @measurements
   end
@@ -75,5 +104,6 @@ attr_reader :id, :name, :size, :status, :themes, :colour
     end
     return theme_names
   end
+# end getters and setters
 
 end # end class
