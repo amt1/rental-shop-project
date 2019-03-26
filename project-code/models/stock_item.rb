@@ -3,7 +3,7 @@ require('pry-byebug')
 
 class StockItem
 
-attr_reader :id, :name, :size, :status, :themes, :colour
+attr_reader :id, :name, :size, :status, :colour
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
@@ -12,7 +12,8 @@ attr_reader :id, :name, :size, :status, :themes, :colour
     @measurements = options['measurements']
     @cleaning_instructions = options['cleaning_instructions']
     @status = options['status']  # code to look up
-    @themes = options['themes']  # array of codes to look up
+    # @themes = options['themes']  # array of codes to look up
+    # themes moved to a join table now
     @colour = options['colour']
 
     # p @themes
@@ -21,22 +22,26 @@ attr_reader :id, :name, :size, :status, :themes, :colour
 ## start database CRUD functions
 
   def save
-    # sql='INSERT INTO stock_items (name, size, measurements, cleaning_instructions, status, themes, colour)
-    # VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id;'
-
+    sql='INSERT INTO stock_items (name, size, measurements, cleaning_instructions, status, colour)
+    VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;'
+    values = [@name, @size, @measurements, @cleaning_instructions, @status, @colour]
+    @id = SqlRunner.run(sql, values).first['id'].to_i
+    
+# originally tried to store multiple themes using an array, which seemed like it almost worked.
+# abandoned this approach for a join table now. Keeping code commented out below for now
     # this is the correct syntax, found using Postico:
- sql="INSERT INTO stock_items
- (name, size, measurements, cleaning_instructions, status, themes, colour)
- VALUES ($1,$2,$3,$4,$5,array[8,$7],$6) RETURNING id;"
-
-values = [@name, @size, @measurements, @cleaning_instructions, @status,@colour, 4]
-
-@id = SqlRunner.run(sql, values).first['id'].to_i
+#  sql="INSERT INTO stock_items
+#  (name, size, measurements, cleaning_instructions, status, themes, colour)
+#  VALUES ($1,$2,$3,$4,$5,array[4,$7],$6) RETURNING id;"
+# test=7
+# test2=8
+# values = [@name, @size, @measurements, @cleaning_instructions, @status,@colour]
+#
+# @id = SqlRunner.run(sql, values).first['id'].to_i
 
 # @id = SqlRunner.run(sql).first['id'].to_i
 # p 'array#{@themes}'
-    # values = [@name, @size, @measurements, @cleaning_instructions, @status, @themes, @colour]
-    # @id = SqlRunner.run(sql, values).first['id'].to_i
+    #
   end
 
   def self.find_by_id(id)

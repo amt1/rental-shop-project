@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS stock_items;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS sizes;
 DROP TABLE IF EXISTS item_status_codes;
+DROP TABLE IF EXISTS item_themes;
 
 CREATE TYPE flag AS ENUM ('0','1','2');
 -- 0 = 'All ok', 1 = 'Returned items late or damaged', 2 = 'Banned after previous loss written off'
@@ -51,7 +52,13 @@ CREATE TABLE stock_items (
   measurements TEXT,
   cleaning_instructions VARCHAR(255),
   status INT2 REFERENCES item_status_codes(id),
-  themes INT2[],
+--  themes INT2[],
 --  themes VARCHAR,
   colour colour_names
+);
+
+CREATE TABLE item_themes (
+  id SERIAL2 PRIMARY KEY,
+  theme_code INT2 REFERENCES theme_codes(id) ON DELETE CASCADE,
+  item_id INT4 REFERENCES stock_items(id) ON DELETE CASCADE
 );

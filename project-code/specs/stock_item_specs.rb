@@ -12,7 +12,6 @@ class TestStockItem < MiniTest::Test
       'measurements' => 'Standard Size',
       'cleaning_instructions' => 'Delicate Wash at 30, No Spin, No Tumble Dry',
       'status' => '1',
-      'themes' => [3,5],
       'colour' => 'White'
     }
     @my_test_costume = StockItem.new(@costume1)
@@ -22,7 +21,6 @@ class TestStockItem < MiniTest::Test
       'measurements' => 'Standard Size',
       'cleaning_instructions' => 'Delicate Wash at 30, No Spin, No Tumble Dry',
       'status' => '1',
-      'themes' => [3,5],
       'colour' => 'Red'
     }
     @redshirt = StockItem.new(@costume2)
@@ -55,6 +53,7 @@ class TestStockItem < MiniTest::Test
   #
   def test_get_themes_list_names
     # assert_equal(["Star Wars", "Sci Fi"], @my_test_costume.get_themes_list_names)
+    # themes moved to a join table now
   end
 
 ## end getters and setters
@@ -63,7 +62,7 @@ class TestStockItem < MiniTest::Test
 
   def test_stock_item_save
     @redshirt.save
-    # assert_equal(@redshirt.name, StockItem.find_by_id(@redshirt.id).name)
+    assert_equal(@redshirt.name, StockItem.find_by_id(@redshirt.id).name)
   end
 
 end # end class
