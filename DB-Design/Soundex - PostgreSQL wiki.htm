@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0040)https://wiki.postgresql.org/wiki/Soundex -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr" class="client-js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta name="generator" content="MediaWiki 1.19.20+dfsg-2.3">
+<link rel="shortcut icon" href="https://wiki.postgresql.org/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="https://wiki.postgresql.org/opensearch_desc.php" title="PostgreSQL wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wiki.postgresql.org/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="PostgreSQL wiki Atom feed" href="https://wiki.postgresql.org/index.php?title=Special:RecentChanges&amp;feed=atom">		<title>Soundex - PostgreSQL wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/skins/common/shared.css?303";
+			@import "/skins/postgresql/main.css?303";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="./Soundex - PostgreSQL wiki_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/skins/postgresql/IE50Fixes.css?303";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/skins/postgresql/IE55Fixes.css?303";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/skins/postgresql/IE60Fixes.css?303";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/skins/postgresql/IE70Fixes.css?303";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/skins/common/IEFixes.js?303"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Soundex","wgTitle":"Soundex","wgCurRevisionId":16264,"wgArticleId":1987,"wgIsArticle":true,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Library Snippets","PL/pgSQL"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgRelevantPageName":"Soundex","wgRestrictionEdit":[],"wgRestrictionMove":[]});
+}</script>                
+		<!-- Head Scripts -->
+<script src="./Soundex - PostgreSQL wiki_files/load.php"></script><script src="./Soundex - PostgreSQL wiki_files/load(1).php"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Soundex","wgTitle":"Soundex","wgCurRevisionId":16264,"wgArticleId":1987,"wgIsArticle":true,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Library Snippets","PL/pgSQL"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgRelevantPageName":"Soundex","wgRestrictionEdit":[],"wgRestrictionMove":[]});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":5,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"postgresql","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,
+"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;},{},{});mw.loader.implement("user.tokens",function($){mw.user.tokens.set({"editToken":"+\\","watchToken":false});;},{},{});
+
+/* cache key: wikidb:resourceloader:filter:minify-js:7:f78caffcc6ce93a340ff216b543c7e14 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax"]);
+}</script><script type="text/javascript" src="./Soundex - PostgreSQL wiki_files/load(2).php"></script><style type="text/css" media="all">.js-messagebox{margin:1em 5%;padding:0.5em 2.5%;border:1px solid #ccc;background-color:#fcfcfc;font-size:0.8em}.js-messagebox .js-messagebox-group{margin:1px;padding:0.5em 2.5%;border-bottom:1px solid #ddd}.js-messagebox .js-messagebox-group:last-child{border-bottom:thin none transparent}
+
+/* cache key: wikidb:resourceloader:filter:minify-css:7:8b08bdc91c52a9ffba396dccfb5b473c */
+
+
+.mw-collapsible-toggle{float:right} li .mw-collapsible-toggle{float:none} .mw-collapsible-toggle-li{list-style:none}
+
+/* cache key: wikidb:resourceloader:filter:minify-css:7:4250852ed2349a0d4d0fc6509a3e7d4c */
+</style><meta name="ResourceLoaderDynamicStyles"><style type="text/css">/*<![CDATA[*/
+.source-sql {line-height: normal;}
+.source-sql li, .source-sql pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for sql
+ * CSS class: source-sql, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.sql.source-sql .de1, .sql.source-sql .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.sql.source-sql  {font-family:monospace;}
+.sql.source-sql .imp {font-weight: bold; color: red;}
+.sql.source-sql li, .sql.source-sql .li1 {font-weight: normal; vertical-align:top;}
+.sql.source-sql .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.sql.source-sql .li2 {font-weight: bold; vertical-align:top;}
+.sql.source-sql .kw1 {color: #993333; font-weight: bold;}
+.sql.source-sql .co1 {color: #808080; font-style: italic;}
+.sql.source-sql .coMULTI {color: #808080; font-style: italic;}
+.sql.source-sql .es0 {color: #000099; font-weight: bold;}
+.sql.source-sql .br0 {color: #66cc66;}
+.sql.source-sql .sy0 {color: #66cc66;}
+.sql.source-sql .st0 {color: #ff0000;}
+.sql.source-sql .nu0 {color: #cc66cc;}
+.sql.source-sql .ln-xtra, .sql.source-sql li.ln-xtra, .sql.source-sql div.ln-xtra {background-color: #ffc;}
+.sql.source-sql span.xtra { display:block; }
+
+/*]]>*/
+</style>	</head>
+<body class="mediawiki  ltr ns-0 ns-subject page-Soundex">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content"><div id="mw-js-message" class="js-messagebox" style="display: none;"></div>
+		<a name="top" id="top"></a>
+		<div id="siteNotice"><div id="localNotice" lang="en" dir="ltr"><p><b><a rel="nofollow" class="external text" href="https://wiki.postgresql.org/wiki/WikiEditing">Want to edit, but don't see an edit button when logged in?  Click here.</a></b>
+</p></div></div>		<h1 class="firstHeading">Soundex</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From PostgreSQL wiki</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="https://wiki.postgresql.org/wiki/Soundex#column-one">navigation</a>, <a href="https://wiki.postgresql.org/wiki/Soundex#searchInput">search</a></div>			<!-- start content -->
+			<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="width: 11em; float: right; border: 1px solid #ccc; padding: 1ex 1em;">
+<p><big style="color: #e65600;"><b><a href="https://wiki.postgresql.org/wiki/Category:Library_Snippets" title="Category:Library Snippets">Library Snippets</a></b></big>
+</p>
+<p style="font-weight: bold;">Compute string soundex</p>
+<div style="background: #eee; text-align: center; padding: 2px;">Works with PostgreSQL</div>
+<p>Tested on 9.0, 9.1. Probably works in earlier versions
+</p>
+<div style="background: #eee; text-align: center; padding: 2px;">Written in</div>
+<p>PL/pgSQL
+</p>
+<div style="background: #eee; text-align: center; padding: 2px;">Depends on</div>
+<p>Nothing
+</p>
+</div>
+<p><br>
+<b>Soundex</b> is a simple algorithm for comparing/normalizing English words based on phonetic similarity.
+</p><p>PostgreSQL 8.3 and later include a soundex(text) function in the <a rel="nofollow" class="external text" href="http://www.postgresql.org/docs/current/static/fuzzystrmatch.html"><b>fuzzystrmatch</b> extension</a>. Note that this function behaves differently from some other implementations, as it does not skip similar consonants that are separated by 'w' and 'h'.
+</p>
+<h2> <span class="mw-headline" id="PL.2FpgSQL_version"> PL/pgSQL version </span></h2>
+<p>If you can't install the fuzzystrmatch extension (due to limited privieges or other reasons), here is an alternative version in PL/pgSQL. This function behaves identically to the fuzzystrmatch implementation. (Tested on PostgreSQL 9.0 and 9.1, using dictionaries in many different languages).
+</p>
+<hr>
+<div dir="ltr" class="mw-geshi mw-content-ltr"><div class="sql source-sql"><pre class="de1"><span class="kw1">CREATE</span> <span class="kw1">OR</span> <span class="kw1">REPLACE</span> <span class="kw1">FUNCTION</span> soundex<span class="br0">(</span><span class="kw1">INPUT</span> text<span class="br0">)</span> <span class="kw1">RETURNS</span> text
+IMMUTABLE STRICT COST <span class="nu0">500</span> <span class="kw1">LANGUAGE</span> plpgsql
+<span class="kw1">AS</span> $$
+<span class="kw1">DECLARE</span>
+  soundex text <span class="sy0">=</span> <span class="st0">''</span>;
+  <span class="kw1">CHAR</span> text;
+  symbol text;
+  last_symbol text <span class="sy0">=</span> <span class="st0">''</span>;
+  pos <span class="kw1">INT</span> <span class="sy0">=</span> <span class="nu0">1</span>;
+<span class="kw1">BEGIN</span>
+  WHILE <span class="kw1">LENGTH</span><span class="br0">(</span>soundex<span class="br0">)</span> <span class="sy0">&lt;</span> <span class="nu0">4</span> LOOP
+    <span class="kw1">CHAR</span> <span class="sy0">=</span> <span class="kw1">UPPER</span><span class="br0">(</span>substr<span class="br0">(</span><span class="kw1">INPUT</span><span class="sy0">,</span> pos<span class="sy0">,</span> <span class="nu0">1</span><span class="br0">)</span><span class="br0">)</span>;
+    pos <span class="sy0">=</span> pos <span class="sy0">+</span> <span class="nu0">1</span>;
+    <span class="kw1">CASE</span> <span class="kw1">CHAR</span>
+    <span class="kw1">WHEN</span> <span class="st0">''</span> <span class="kw1">THEN</span>
+      <span class="co1">-- End of input string</span>
+      <span class="kw1">IF</span> soundex <span class="sy0">=</span> <span class="st0">''</span> <span class="kw1">THEN</span>
+        <span class="kw1">RETURN</span> <span class="st0">''</span>;
+      <span class="kw1">ELSE</span>
+        <span class="kw1">RETURN</span> rpad<span class="br0">(</span>soundex<span class="sy0">,</span> <span class="nu0">4</span><span class="sy0">,</span> <span class="st0">'0'</span><span class="br0">)</span>;
+      <span class="kw1">END</span> <span class="kw1">IF</span>;
+    <span class="kw1">WHEN</span> <span class="st0">'B'</span><span class="sy0">,</span> <span class="st0">'F'</span><span class="sy0">,</span> <span class="st0">'P'</span><span class="sy0">,</span> <span class="st0">'V'</span> <span class="kw1">THEN</span>
+      symbol <span class="sy0">=</span> <span class="st0">'1'</span>;
+    <span class="kw1">WHEN</span> <span class="st0">'C'</span><span class="sy0">,</span> <span class="st0">'G'</span><span class="sy0">,</span> <span class="st0">'J'</span><span class="sy0">,</span> <span class="st0">'K'</span><span class="sy0">,</span> <span class="st0">'Q'</span><span class="sy0">,</span> <span class="st0">'S'</span><span class="sy0">,</span> <span class="st0">'X'</span><span class="sy0">,</span> <span class="st0">'Z'</span> <span class="kw1">THEN</span>
+      symbol <span class="sy0">=</span> <span class="st0">'2'</span>;
+    <span class="kw1">WHEN</span> <span class="st0">'D'</span><span class="sy0">,</span> <span class="st0">'T'</span> <span class="kw1">THEN</span>
+      symbol <span class="sy0">=</span> <span class="st0">'3'</span>;
+    <span class="kw1">WHEN</span> <span class="st0">'L'</span> <span class="kw1">THEN</span>
+      symbol <span class="sy0">=</span> <span class="st0">'4'</span>;
+    <span class="kw1">WHEN</span> <span class="st0">'M'</span><span class="sy0">,</span> <span class="st0">'N'</span> <span class="kw1">THEN</span>
+      symbol <span class="sy0">=</span> <span class="st0">'5'</span>;
+    <span class="kw1">WHEN</span> <span class="st0">'R'</span> <span class="kw1">THEN</span>
+      symbol <span class="sy0">=</span> <span class="st0">'6'</span>;
+    <span class="kw1">ELSE</span>
+      <span class="co1">-- Not a consonant; no output, but next similar consonant will be re-recorded</span>
+      symbol <span class="sy0">=</span> <span class="st0">''</span>;
+    <span class="kw1">END</span> <span class="kw1">CASE</span>;
+&nbsp;
+    <span class="kw1">IF</span> soundex <span class="sy0">=</span> <span class="st0">''</span> <span class="kw1">THEN</span>
+      <span class="co1">-- First character; only accept strictly English ASCII characters</span>
+      <span class="kw1">IF</span> <span class="kw1">CHAR</span> ~<span class="sy0">&gt;=</span>~ <span class="st0">'A'</span> <span class="kw1">AND</span> <span class="kw1">CHAR</span> ~<span class="sy0">&lt;=</span>~ <span class="st0">'Z'</span> <span class="kw1">THEN</span>
+        soundex <span class="sy0">=</span> <span class="kw1">CHAR</span>;
+        last_symbol <span class="sy0">=</span> symbol;
+      <span class="kw1">END</span> <span class="kw1">IF</span>;
+    ELSIF last_symbol&nbsp;!<span class="sy0">=</span> symbol <span class="kw1">THEN</span>
+      soundex <span class="sy0">=</span> soundex <span class="sy0">||</span> symbol;
+      last_symbol <span class="sy0">=</span> symbol;
+    <span class="kw1">END</span> <span class="kw1">IF</span>;
+  <span class="kw1">END</span> LOOP;
+&nbsp;
+  <span class="kw1">RETURN</span> soundex;
+<span class="kw1">END</span>;
+$$;</pre></div></div>
+<h2> <span class="mw-headline" id="Example"> Example </span></h2>
+<pre>db=# select column1, soundex(column1) from (values ('Robert'), ('Rupert'), ('Rubin'), ('Ashcroft')) data;
+ column1  | soundex 
+----------+---------
+ Robert   | R163
+ Rupert   | R163
+ Rubin    | R150
+ Ashcroft | A226
+
+db=# create table words(word text);
+db=# copy words from '/usr/share/dict/words';
+db=# create index on words(soundex(word));
+db=# select * from words where soundex(word)=soundex('hotel');
+  word  
+--------
+ hotel
+ hotly
+ huddle
+</pre>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 42/1000000
+Post‐expand include size: 595/2097152 bytes
+Template argument size: 105/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wikidb:pcache:idhash:1987-0!*!0!!*!*!* and timestamp 20190324033758 -->
+</div><div class="printfooter">
+Retrieved from "<a href="https://wiki.postgresql.org/index.php?title=Soundex&amp;oldid=16264">https://wiki.postgresql.org/index.php?title=Soundex&amp;oldid=16264</a>"</div>
+			<div id="catlinks"><div id="catlinks" class="catlinks"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="https://wiki.postgresql.org/wiki/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="https://wiki.postgresql.org/wiki/Category:Library_Snippets" title="Category:Library Snippets">Library Snippets</a></li><li><a href="https://wiki.postgresql.org/wiki/Category:PL/pgSQL" title="Category:PL/pgSQL">PL/pgSQL</a></li></ul></div></div></div>			<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+					 <li id="ca-nstab-main" class="selected"><a href="https://wiki.postgresql.org/wiki/Soundex" array="">Page</a></li>
+					 <li id="ca-talk" class="new"><a href="https://wiki.postgresql.org/index.php?title=Talk:Soundex&amp;action=edit&amp;redlink=1" array="">Discussion</a></li>
+					 <li id="ca-viewsource"><a href="https://wiki.postgresql.org/index.php?title=Soundex&amp;action=edit" array="">View source</a></li>
+					 <li id="ca-history"><a href="https://wiki.postgresql.org/index.php?title=Soundex&amp;action=history" array="">History</a></li>
+				</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="https://wiki.postgresql.org/index.php?title=Special:UserLogin&amp;returnto=Soundex" array="">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(/skins/postgresql/slonik.png);" href="https://wiki.postgresql.org/wiki/Main_Page" array=""></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+		<div class="portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage"><a href="https://wiki.postgresql.org/wiki/Main_Page" array="">Main Page</a></li>
+				<li id="n-randompage"><a href="https://wiki.postgresql.org/wiki/Special:Random" array="">Random page</a></li>
+				<li id="n-recentchanges"><a href="https://wiki.postgresql.org/wiki/Special:RecentChanges" array="">Recent changes</a></li>
+				<li id="n-help"><a href="https://wiki.postgresql.org/wiki/Help:Contents" array="">Help</a></li>
+			</ul>
+		</div>
+	</div>
+		<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="https://wiki.postgresql.org/wiki/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" array="" value="">
+				<input type="submit" name="go" class="searchButton" id="searchGoButton" value="Go" array="">&nbsp;
+				<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" array="">
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="https://wiki.postgresql.org/wiki/Special:WhatLinksHere/Soundex" array="">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="https://wiki.postgresql.org/wiki/Special:RecentChangesLinked/Soundex" array="">Related changes</a></li>
+<li id="t-specialpages"><a href="https://wiki.postgresql.org/wiki/Special:SpecialPages" array="">Special pages</a></li>
+				<li id="t-print"><a href="https://wiki.postgresql.org/index.php?title=Soundex&amp;printable=yes" array="">Printable version</a></li>				<li id="t-permalink"><a href="https://wiki.postgresql.org/index.php?title=Soundex&amp;oldid=16264" array="">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="https://www.mediawiki.org/"><img src="./Soundex - PostgreSQL wiki_files/poweredby_mediawiki_88x31.png" height="31" width="88" alt="Powered by MediaWiki"></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 9 February 2012, at 13:59.</li>
+				<li id="privacy"><a href="https://wiki.postgresql.org/wiki/PostgreSQL_wiki:Privacy_policy" title="PostgreSQL wiki:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="https://wiki.postgresql.org/wiki/PostgreSQL_wiki:About" title="PostgreSQL wiki:About">About PostgreSQL wiki</a></li>
+				<li id="disclaimer"><a href="https://wiki.postgresql.org/wiki/PostgreSQL_wiki:General_disclaimer" title="PostgreSQL wiki:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+		
+	<script>if(window.mw){
+mw.loader.load(["mediawiki.user","mediawiki.page.ready"], null, true);
+}</script>
+<script src="./Soundex - PostgreSQL wiki_files/load(3).php"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./Soundex - PostgreSQL wiki_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1345454-5");
+pageTracker._trackPageview();
+</script></div><script src="./Soundex - PostgreSQL wiki_files/load(4).php" type="text/javascript"></script>
+<!-- Served in 0.084 secs. -->
+</body></html>
