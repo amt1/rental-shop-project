@@ -27,8 +27,12 @@ attr_reader :id, :name, :size, :status, :themes, :colour
     # this is the correct syntax, found using Postico:
  sql="INSERT INTO stock_items
  (name, size, measurements, cleaning_instructions, status, themes, colour)
- VALUES ('Ensign Redshirt','1','Standard Size','Delicate Wash at 30, No Spin, No Tumble Dry','1',array[3,5],'Red') RETURNING id;"
-@id = SqlRunner.run(sql).first['id'].to_i
+ VALUES ($1,$2,$3,$4,$5,array[3,5],$6) RETURNING id;"
+
+values = [@name, @size, @measurements, @cleaning_instructions, @status,@colour]
+
+@id = SqlRunner.run(sql, values).first['id'].to_i
+
 # @id = SqlRunner.run(sql).first['id'].to_i
 # p 'array#{@themes}'
     # values = [@name, @size, @measurements, @cleaning_instructions, @status, @themes, @colour]
