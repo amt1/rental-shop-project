@@ -65,22 +65,22 @@ class TestStockItem < MiniTest::Test
     assert_equal(@redshirt.name, StockItem.find_by_id(@redshirt.id).name)
   end
 
-  def test_stock_delete_all
-    StockItem.delete_all
-    assert_nil(StockItem.find_by_id(1))
-    # remember, the order of running the tests is randomized
-  end
-
-  def test_delete_1_item
-    StockItem.delete_all
-    @redshirt.save
-    StockItem.find_by_id(@redshirt.id)
-    # check it was saved
-    assert_equal(@redshirt.name, StockItem.find_by_id(@redshirt.id).name)
-    @redshirt.delete
-    # test it was deleted
-    assert_nil(StockItem.find_by_id(@redshirt.id))
-  end
+  # def test_stock_delete_all
+  #   StockItem.delete_all
+  #   assert_nil(StockItem.find_by_id(1))
+  #   # remember, the order of running the tests is randomized
+  # end
+  #
+  # def test_delete_1_item
+  #   StockItem.delete_all
+  #   @redshirt.save
+  #   StockItem.find_by_id(@redshirt.id)
+  #   # check it was saved
+  #   assert_equal(@redshirt.name, StockItem.find_by_id(@redshirt.id).name)
+  #   @redshirt.delete
+  #   # test it was deleted
+  #   assert_nil(StockItem.find_by_id(@redshirt.id))
+  # end
 
   def test_update_stock_item
     @redshirt.save
@@ -97,6 +97,8 @@ class TestStockItem < MiniTest::Test
     @redshirt.set_status_code('2')
     @redshirt.update
     assert_equal('2', StockItem.find_by_id(@redshirt.id).get_status_code)
+    assert_equal('Booked, unavailable', StockItem.find_by_id(@redshirt.id).get_status_msg)
+    # p @redshirt.get_status_msg
     @redshirt.set_cleaning_instructions('Nuke it from Orbit')
     @redshirt.update
     assert_equal('Nuke it from Orbit', StockItem.find_by_id(@redshirt.id).get_cleaning_instructions)
@@ -104,5 +106,30 @@ class TestStockItem < MiniTest::Test
     @redshirt.update
     assert_equal('Massive, just massive', StockItem.find_by_id(@redshirt.id).get_measurements)
   # binding.pry
+  end
+
+  def test_get_item_themes
+    test_item=StockItem.find_by_id(51)
+    # p test_item.get_themes_list_names
+  # binding.pry
+    assert_equal(['Sci Fi','Star Wars'], test_item.get_themes_list_names)
+  end
+
+  def test_set_item_themes
+    @redshirt.save
+    new_themes=[5,6]
+    @redshirt.set_themes(new_themes)
+    assert_equal(['Sci Fi','Star Trek'], @redshirt.get_themes_list_names)
+    # p @redshirt.get_themes_list_names
+  end
+
+  def test_get_standard_size
+    @my_test_costume.save
+    assert_equal('Age 3-4', @my_test_costume.get_standard_size)
+  end
+
+  def test_get_sizing
+      @my_test_costume.save
+      assert_equal('Kids', @my_test_costume.get_size_range)
   end
 end # end class

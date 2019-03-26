@@ -77,6 +77,48 @@ attr_reader :id, :name, :size, :status, :colour
     SqlRunner.run(sql, values)
   end
 
+  def get_themes_list_names
+    theme_names=[]
+    # @themes.each do |theme_code|
+    #   sql='SELECT theme FROM theme_codes WHERE id = $1;'
+    #   values=[theme_code]
+    sql= 'SELECT theme FROM theme_codes
+    JOIN item_themes ON theme_codes.id = item_themes.theme_code
+    WHERE item_themes.item_id = $1
+    ORDER BY theme;'
+    values=[@id]
+    # query works in Postico, returns Sci Fi and Star Wars
+      theme_names = SqlRunner.run(sql,values).map { |theme_name| theme_name['theme'] }
+    # it's still getting data out of arrays and hashes in the right format I'm having trouble with -
+    #need to practise this
+    return theme_names
+  end
+
+  def set_themes(theme_codes) # should take an array, these will come from checkboxes
+    theme_codes.each do |theme_code|
+      sql='INSERT INTO item_themes ( theme_code, item_id) VALUES ($1, $2);'
+      values=[theme_code, @id]
+      SqlRunner.run(sql,values)
+    end
+  end
+
+  def get_status_msg
+    sql='SELECT meaning FROM item_status_codes WHERE id = $1;'
+    values=[@status]
+    return SqlRunner.run(sql,values).first.map { |status| status[1] }[0]
+  end
+
+  def get_standard_size
+    sql='SELECT standard_size FROM sizes WHERE id = $1;'
+    values=[@size]
+    return SqlRunner.run(sql,values).first.map { |size| size[1] }[0]
+  end
+
+  def get_size_range
+    sql='SELECT sizing FROM sizes WHERE id = $1;'
+    values=[@size]
+    return SqlRunner.run(sql,values).first.map { |size| size[1] }[0]
+  end
 ## end database CRUD functions
 
 ## start getters and setters
@@ -116,29 +158,16 @@ attr_reader :id, :name, :size, :status, :colour
     @status = new_status_code
   end
 
-  def get_status_msg
-    sql='SELECT meaning FROM item_status_codes WHERE id = $1;'
-    values=[@status]
-    return SqlRunner.run(sql,values).first.map { |status| status[1] }[0]
-  end
-
   def get_themes_array
     return @themes
   end
 
-  def set_themes_array(new_themes_array)
-    @themes = new_themes_array
-  end
+# probably no longer applies
+  # def set_themes_array(new_themes_array)
+  #   @themes = new_themes_array
+  # end
 
-  def get_themes_list_names
-    theme_names=[]
-    @themes.each do |theme_code|
-      sql='SELECT theme FROM theme_codes WHERE id = $1;'
-      values=[theme_code]
-      theme_names << SqlRunner.run(sql,values).first.map { |status| status[1] }[0]
-    end
-    return theme_names
-  end
 # end getters and setters
+
 
 end # end class
