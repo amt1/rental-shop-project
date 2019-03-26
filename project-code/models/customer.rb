@@ -1,5 +1,5 @@
 require_relative('../db/sql_runner.rb')
-require('pry')
+# require('pry')
 
 class Customer
 

@@ -9,7 +9,9 @@ CREATE TYPE flag AS ENUM ('0','1','2');
 -- 0 = 'All ok', 1 = 'Returned items late or damaged', 2 = 'Banned after previous loss written off'
 -- CREATE TYPE item_status_code AS ENUM ('0','1','2','3','4','5','6','7');
 -- these are getting too complex and likely to change, going for a lookup table instead
-CREATE TYPE size_type AS ENUM ('Baby', 'Kids','Adult', 'Women', 'Men');
+CREATE TYPE size_types AS ENUM ('Baby', 'Kids','Adult', 'Women', 'Men');
+CREATE TYPE colour_names AS ENUM ('Red', 'Blue', 'Orange', 'Yellow','Green','Brown','Black','White');
+CREATE TYPE theme_types AS ENUM ('Seasonal', 'Theatre','Adult','Special Occasion', 'Fandom');
 
 CREATE EXTENSION citext;
 CREATE DOMAIN valid_email AS citext
@@ -27,7 +29,7 @@ CREATE TABLE customers (
 
 CREATE TABLE sizes (
   id SERIAL2 PRIMARY KEY,
-  sizing size_type,
+  sizing size_types,
   standard_size VARCHAR(255)
 );
 
@@ -36,11 +38,19 @@ CREATE TABLE item_status_codes (
   meaning VARCHAR(255)
 );
 
+CREATE TABLE theme_codes (
+  id SERIAL2 PRIMARY KEY,
+  theme_type theme_types,
+  theme VARCHAR(255)
+);
+
 CREATE TABLE stock_items (
   id SERIAL4 PRIMARY KEY,
   name VARCHAR(255),
   size INT2 REFERENCES sizes(id),
   measurements TEXT,
   cleaning_instructions VARCHAR(255),
-  status INT2 REFERENCES item_status_codes(id)
+  status INT2 REFERENCES item_status_codes(id),
+  themes INT2[],
+  colour colour_names
 );
