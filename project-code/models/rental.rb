@@ -60,26 +60,48 @@ end
 
 # rent and return items
   def rent(stock_item_id, customer_id, rental_date, return_due_date, theatre)
-# see what the form sends, whether these arguments should be
-# listed or an options hash 
+# park this for now - see what the form sends, whether these arguments should be
+# listed or an options hash
+# might need to pass in the actual objects for updating stock items
+    error_code=0
     @stock_item_id=stock_item_id
+    error_code += 1 if ( StockItem.find_by_id(@stock_item_id).status > 1 )
     @customer_id=customer_id
-    @theatre=theatre
-    @rental_date=rental_date if (rental_date !=nil) else @rental_date=Date.today.strftime('%Y-%m-%d')
-    if (return_due_date !=nil)
-      @return_due_date=return_due_date
-    elsif theatre
-      @return_due_date=(rental_date+7).strftime('%Y-%m-%d')
-    else
-      @return_due_date=(rental_date+2).strftime('%Y-%m-%d')
-    end
-    @return_code=1
-    update
-    # @transaction_id=Transaction.new(@id).id
-    # update
-    # add transactions as an extension later
-    # can we avoid updating twice?
+    error_code +=2 if ( Customer.find_by_id(@customer_id).get_warnings > 1 )
+    if !error_code
+      @theatre=theatre
+      if (rental_date)
+        @rental_date=rental_date
+        # update item status to booked, unavailable
+      else
+        @rental_date=Date.today.strftime('%Y-%m-%d')
+        # update item status to out on loan
+      end
+      if (return_due_date !=nil)
+        @return_due_date=return_due_date
+      elsif theatre
+        @return_due_date=(rental_date+7).strftime('%Y-%m-%d')
+      else
+        @return_due_date=(rental_date+2).strftime('%Y-%m-%d')
+      end
+      @return_code=1
+      if @id == nil
+        save
+      # @transaction_id=Transaction.new(@id).id
+      end
+      update
+      # add transactions as an extension later
+  end
+  return error_code
+  # 0: ok, 1: item unavailable, 2: customer banned, 3: both banned and unavailable
+  end
 
+  def return_rental(return_code, stock_item, item_status)
+    @return_code=return_code
+    update
+    stock_item.set_status_code(item_status)
+    stock_item.update
+  # extension: close out transaction as well
   end
 # end rent and return items
 

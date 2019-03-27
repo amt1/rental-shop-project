@@ -18,7 +18,7 @@ class TestRental < MiniTest::Test
       'size' => '1',
       'measurements' => 'Standard Size',
       'cleaning_instructions' => 'Delicate Wash at 30, No Spin, No Tumble Dry',
-      'status' => '1',
+      'status' => '4',
       'colour' => 'White',
       'price' => 10
     }
@@ -100,12 +100,24 @@ class TestRental < MiniTest::Test
     @tommy_yoda = Rental.new(@rental3)
   end
 
-  def test_list_current_rentals
-    @stanley_redshirt.save
-    @stanley_yoda.save
-    @tommy_yoda.save
-    p Rental.list_current_rentals
-  end
+def test_return_rental
+  @tommy_yoda.save
+  @baby_yoda.save
+  assert_equal(1, @tommy_yoda.return_code )
+  assert_equal(4, @baby_yoda.status)
+  @tommy_yoda.return_rental(2,@baby_yoda,1)
+  assert_equal(2, @tommy_yoda.return_code )
+  assert_equal(1, @baby_yoda.status)
+# binding.pry
+end
+
+
+  # def test_list_current_rentals
+  #   @stanley_redshirt.save
+  #   @stanley_yoda.save
+  #   @tommy_yoda.save
+  #   p Rental.list_current_rentals
+  # end
   # def test_created
   #   # assert_equal(67, @stanley_redshirt.get_stock_item_id)
   # end

@@ -11,7 +11,7 @@ attr_reader :id, :name, :size, :status, :colour, :price
     @size = options['size'] # code to look up
     @measurements = options['measurements']
     @cleaning_instructions = options['cleaning_instructions']
-    @status = options['status']  # code to look up
+    @status = options['status'].to_i  # code to look up
     # @themes = options['themes']  # array of codes to look up
     # themes moved to a join table now
     @colour = options['colour']
@@ -161,7 +161,7 @@ attr_reader :id, :name, :size, :status, :colour, :price
   def set_price(new_price)
     @price=new_price
   end
-  
+
   def get_themes_array
     return @themes
   end
