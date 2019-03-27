@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)https://www.postgresql.org/docs/8.1/encryption-options.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>PostgreSQL: Documentation: 8.1: Encryption Options</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+   
+  <meta name="theme-color" content="#336791">
+  <meta name="copyright" content="The PostgreSQL Global Development Group">
+  <link href="./PostgreSQL_ Documentation_ 8.1_ Encryption Options_files/fontawesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="./PostgreSQL_ Documentation_ 8.1_ Encryption Options_files/bootstrap.min.css">
+  <link rel="shortcut icon" href="https://www.postgresql.org/favicon.ico">
+  
+    <link rel="stylesheet" type="text/css" href="./PostgreSQL_ Documentation_ 8.1_ Encryption Options_files/base.css">
+  
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row justify-content-md-center">
+        <div class="col">
+          <!-- Header -->
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand p-0" href="https://www.postgresql.org/">
+              <img class="logo" src="./PostgreSQL_ Documentation_ 8.1_ Encryption Options_files/elephant.png" alt="PostgreSQL Elephant Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#pgNavbar" aria-controls="pgNavbar" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="pgNavbar">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item p-2"><a href="https://www.postgresql.org/" title="Home">Home</a></li>
+                <li class="nav-item p-2"><a href="https://www.postgresql.org/about/" title="About">About</a></li>
+                <li class="nav-item p-2"><a href="https://www.postgresql.org/download/" title="Download">Download</a></li>
+                <li class="nav-item p-2"><a href="https://www.postgresql.org/docs/" title="Documentation">Documentation</a></li>
+                <li class="nav-item p-2"><a href="https://www.postgresql.org/community/" title="Community">Community</a></li>
+                <li class="nav-item p-2"><a href="https://www.postgresql.org/developer/" title="Developers">Developers</a></li>
+                <li class="nav-item p-2"><a href="https://www.postgresql.org/support/" title="Support">Support</a></li>
+                <li class="nav-item p-2"><a href="https://www.postgresql.org/about/donate/" title="Donate">Donate</a></li>
+                <li class="nav-item p-2"><a href="https://www.postgresql.org/account/" title="Your account">Your account</a></li>
+              </ul>
+             <form role="search" method="get" action="https://www.postgresql.org/search/">
+               <div class="input-group">
+                 <input id="q" name="q" type="text" size="20" maxlength="255" accesskey="s" class="form-control" placeholder="Search for...">
+                 <span class="input-group-btn">
+                   <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
+                 </span>
+               </div><!-- /input-group -->
+             </form>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div class="row justify-content-center pg-shout-box">
+        <div class="col text-white text-center">14th February 2019: <a href="https://www.postgresql.org/about/news/1920/">PostgreSQL 11.2, 10.7, 9.6.12, 9.5.16, and 9.4.21 Released</a>!
+
+</div>
+      </div>
+    </div>
+    <div class="container-fluid margin">
+      <div class="row">
+        <div id="pgContentWrap" class="col-11">
+          <div class="row">
+            <div class="col-md-6 mb-2">
+              <div class="row">
+                <div class="col">
+                  <div>
+                    <a href="https://www.postgresql.org/docs/" title="Documentation">Documentation</a> → <a href="https://www.postgresql.org/docs/8.1/index.html">PostgreSQL 8.1</a>
+                  </div>
+                </div>
+              </div>
+              
+                <div class="row">
+                  <div class="col">
+                    Supported Versions:
+                      
+                        
+                        
+                          <a href="https://www.postgresql.org/docs/current/encryption-options.html" title="PostgreSQL 11 - Encryption Options">Current</a>
+                          (<a href="https://www.postgresql.org/docs/11/encryption-options.html" title="PostgreSQL 11 - Encryption Options">11</a>)
+                        
+                      
+                         / 
+                        
+                          <a href="https://www.postgresql.org/docs/10/encryption-options.html" title="PostgreSQL 10 - Encryption Options">10</a>
+                        
+                      
+                         / 
+                        
+                          <a href="https://www.postgresql.org/docs/9.6/encryption-options.html" title="PostgreSQL 9.6 - Encryption Options">9.6</a>
+                        
+                      
+                         / 
+                        
+                          <a href="https://www.postgresql.org/docs/9.5/encryption-options.html" title="PostgreSQL 9.5 - Encryption Options">9.5</a>
+                        
+                      
+                         / 
+                        
+                          <a href="https://www.postgresql.org/docs/9.4/encryption-options.html" title="PostgreSQL 9.4 - Encryption Options">9.4</a>
+                        
+                      
+                  </div>
+                </div>
+              
+              
+                <div class="row">
+                  <div class="col">
+                    Development Versions:
+                    
+                      
+                      <a href="https://www.postgresql.org/docs/devel/encryption-options.html" title="PostgreSQL devel - Encryption Options" rel="nofollow">devel</a>
+                    
+                  </div>
+                </div>
+              
+              
+                <div class="row">
+                  <div class="col-12">
+                    Unsupported versions:
+                    
+                      
+                      <a href="https://www.postgresql.org/docs/9.3/encryption-options.html" title="PostgreSQL 9.3 - Encryption Options" rel="nofollow">9.3</a>
+                    
+                       / 
+                      <a href="https://www.postgresql.org/docs/9.2/encryption-options.html" title="PostgreSQL 9.2 - Encryption Options" rel="nofollow">9.2</a>
+                    
+                       / 
+                      <a href="https://www.postgresql.org/docs/9.1/encryption-options.html" title="PostgreSQL 9.1 - Encryption Options" rel="nofollow">9.1</a>
+                    
+                       / 
+                      <a href="https://www.postgresql.org/docs/9.0/encryption-options.html" title="PostgreSQL 9.0 - Encryption Options" rel="nofollow">9.0</a>
+                    
+                       / 
+                      <a href="https://www.postgresql.org/docs/8.4/encryption-options.html" title="PostgreSQL 8.4 - Encryption Options" rel="nofollow">8.4</a>
+                    
+                       / 
+                      <a href="https://www.postgresql.org/docs/8.3/encryption-options.html" title="PostgreSQL 8.3 - Encryption Options" rel="nofollow">8.3</a>
+                    
+                       / 
+                      <a href="https://www.postgresql.org/docs/8.2/encryption-options.html" title="PostgreSQL 8.2 - Encryption Options" rel="nofollow">8.2</a>
+                    
+                       / 
+                      <a href="https://www.postgresql.org/docs/8.1/encryption-options.html" title="PostgreSQL 8.1 - Encryption Options" class="docs-version-selected" rel="nofollow">8.1</a>
+                    
+                       / 
+                      <a href="https://www.postgresql.org/docs/8.0/encryption-options.html" title="PostgreSQL 8.0 - Encryption Options" rel="nofollow">8.0</a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+            <div class="col-md-6 col-lg-5 offset-lg-1">
+              <form id="docSearchForm" role="search" method="get" action="https://www.postgresql.org/search/">
+                <input type="hidden" name="u" value="/docs/8.1/">
+                <div class="input-group">
+                  <input type="text" id="q" name="q" class="form-control" placeholder="Search the documentation for...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
+                  </span>
+                </div><!-- /input-group -->
+              </form>
+            </div>
+          </div>
+          <div id="docContent">
+            <div class="NAVHEADER">
+  <table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tbody><tr>
+      <th colspan="5" align="center" valign="bottom">PostgreSQL
+      8.1.23 Documentation</th>
+    </tr>
+
+    <tr>
+      <td width="10%" align="left" valign="top"><a href="https://www.postgresql.org/docs/8.1/postmaster-shutdown.html" accesskey="P">Prev</a></td>
+
+      <td width="10%" align="left" valign="top"><a href="https://www.postgresql.org/docs/8.1/runtime.html">Fast Backward</a></td>
+
+      <td width="60%" align="center" valign="bottom">Chapter 16.
+      Operating System Environment</td>
+
+      <td width="10%" align="right" valign="top"><a href="https://www.postgresql.org/docs/8.1/runtime.html">Fast Forward</a></td>
+
+      <td width="10%" align="right" valign="top"><a href="https://www.postgresql.org/docs/8.1/ssl-tcp.html" accesskey="N">Next</a></td>
+    </tr>
+  </tbody></table>
+  <hr class="c1" width="100%">
+</div>
+
+<div class="SECT1">
+  <h1 class="SECT1"><a name="ENCRYPTION-OPTIONS" id="ENCRYPTION-OPTIONS">16.6. Encryption Options</a></h1><a name="AEN18219" id="AEN18219"></a>
+
+  <p><span class="PRODUCTNAME">PostgreSQL</span> offers encryption
+  at several levels, and provides flexibility in protecting data
+  from disclosure due to database server theft, unscrupulous
+  administrators, and insecure networks. Encryption might also be
+  required to secure sensitive data such as medical records or
+  financial transactions.</p>
+
+  <div class="VARIABLELIST">
+    <dl>
+      <dt>Password Storage Encryption</dt>
+
+      <dd>
+        <p>By default, database user passwords are stored as MD5
+        hashes, so the administrator cannot determine the actual
+        password assigned to the user. If MD5 encryption is used
+        for client authentication, the unencrypted password is
+        never even temporarily present on the server because the
+        client MD5 encrypts it before being sent across the
+        network.</p>
+      </dd>
+
+      <dt>Encryption For Specific Columns</dt>
+
+      <dd>
+        <p>The <tt class="FILENAME">/contrib</tt> function library
+        <code class="FUNCTION">pgcrypto</code> allows certain
+        fields to be stored encrypted. This is useful if only some
+        of the data is sensitive. The client supplies the
+        decryption key and the data is decrypted on the server and
+        then sent to the client.</p>
+
+        <p>The decrypted data and the decryption key are present on
+        the server for a brief time while it is being decrypted and
+        communicated between the client and server. This presents a
+        brief moment where the data and keys can be intercepted by
+        someone with complete access to the database server, such
+        as the system administrator.</p>
+      </dd>
+
+      <dt>Data Partition Encryption</dt>
+
+      <dd>
+        <p>On Linux, encryption can be layered on top of a file
+        system mount using a <span class="QUOTE">"loopback
+        device"</span>. This allows an entire file system partition
+        be encrypted on disk, and decrypted by the operating
+        system. On FreeBSD, the equivalent facility is called GEOM
+        Based Disk Encryption, or <acronym class="ACRONYM">gbde</acronym>.</p>
+
+        <p>This mechanism prevents unencrypted data from being read
+        from the drives if the drives or the entire computer is
+        stolen. This does not protect against attacks while the
+        file system is mounted, because when mounted, the operating
+        system provides an unencrypted view of the data. However,
+        to mount the file system, you need some way for the
+        encryption key to be passed to the operating system, and
+        sometimes the key is stored somewhere on the host that
+        mounts the disk.</p>
+      </dd>
+
+      <dt>Encrypting Passwords Across A Network</dt>
+
+      <dd>
+        <p>The <tt class="LITERAL">MD5</tt> authentication method
+        double-encrypts the password on the client before sending
+        it to the server. It first MD5 encrypts it based on the
+        user name, and then encrypts it based on a random salt sent
+        by the server when the database connection was made. It is
+        this double-encrypted value that is sent over the network
+        to the server. Double-encryption not only prevents the
+        password from being discovered, it also prevents another
+        connection from using the same encrypted password to
+        connect to the database server at a later time.</p>
+      </dd>
+
+      <dt>Encrypting Data Across A Network</dt>
+
+      <dd>
+        <p>SSL connections encrypt all data sent across the
+        network: the password, the queries, and the data returned.
+        The <tt class="FILENAME">pg_hba.conf</tt> file allows
+        administrators to specify which hosts can use non-encrypted
+        connections (<tt class="LITERAL">host</tt>) and which
+        require SSL-encrypted connections (<tt class="LITERAL">hostssl</tt>). Also, clients can specify that
+        they connect to servers only via SSL. <span class="APPLICATION">Stunnel</span> or <span class="APPLICATION">SSH</span> can also be used to encrypt
+        transmissions.</p>
+      </dd>
+
+      <dt>SSL Host Authentication</dt>
+
+      <dd>
+        <p>It is possible for both the client and server to provide
+        SSL keys or certificates to each other. It takes some extra
+        configuration on each side, but this provides stronger
+        verification of identity than the mere use of passwords. It
+        prevents a computer from pretending to be the server just
+        long enough to read the password send by the client. It
+        also helps prevent "man in the middle" attacks where a
+        computer between the client and server pretends to be the
+        server and reads and passes all data between the client and
+        server.</p>
+      </dd>
+
+      <dt>Client-Side Encryption</dt>
+
+      <dd>
+        <p>If the system administrator cannot be trusted, it is
+        necessary for the client to encrypt the data; this way,
+        unencrypted data never appears on the database server. Data
+        is encrypted on the client before being sent to the server,
+        and database results have to be decrypted on the client
+        before being used.</p>
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<div class="NAVFOOTER">
+  <hr class="c1" width="100%">
+
+  <table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tbody><tr>
+      <td width="33%" align="left" valign="top"><a href="https://www.postgresql.org/docs/8.1/postmaster-shutdown.html" accesskey="P">Prev</a></td>
+
+      <td width="34%" align="center" valign="top"><a href="https://www.postgresql.org/docs/8.1/index.html" accesskey="H">Home</a></td>
+
+      <td width="33%" align="right" valign="top"><a href="https://www.postgresql.org/docs/8.1/ssl-tcp.html" accesskey="N">Next</a></td>
+    </tr>
+
+    <tr>
+      <td width="33%" align="left" valign="top">Shutting Down the
+      Server</td>
+
+      <td width="34%" align="center" valign="top"><a href="https://www.postgresql.org/docs/8.1/runtime.html" accesskey="U">Up</a></td>
+
+      <td width="33%" align="right" valign="top">Secure TCP/IP
+      Connections with SSL</td>
+    </tr>
+  </tbody></table>
+</div>
+
+          </div>
+          
+        </div> <!-- pgContentWrap -->
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <ul>
+              <li><a href="https://twitter.com/postgresql"><img src="./PostgreSQL_ Documentation_ 8.1_ Encryption Options_files/atpostgresql.png" alt="@postgresql"></a></li>
+              <li><a href="https://git.postgresql.org/gitweb/?p=postgresql.git"><img src="./PostgreSQL_ Documentation_ 8.1_ Encryption Options_files/git.png" alt="Git"></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Copyright -->
+      <div class="container">
+        <a href="https://www.postgresql.org/about/privacypolicy">Privacy Policy</a> |
+        <a href="https://www.postgresql.org/about/policies/coc/">Code of Conduct</a> |
+        <a href="https://www.postgresql.org/about/">About PostgreSQL</a> |
+        <a href="https://www.postgresql.org/about/contact/">Contact</a><br>
+        <p>Copyright © 1996-2019 The PostgreSQL Global Development Group</p>
+      </div>
+    </footer>
+    <script type="text/javascript" async="" src="./PostgreSQL_ Documentation_ 8.1_ Encryption Options_files/ga.js"></script><script src="./PostgreSQL_ Documentation_ 8.1_ Encryption Options_files/jquery-3.2.1.slim.min.js"></script>
+    <script src="./PostgreSQL_ Documentation_ 8.1_ Encryption Options_files/popper.min.js"></script>
+    <script src="./PostgreSQL_ Documentation_ 8.1_ Encryption Options_files/bootstrap.min.js"></script>
+    <script src="./PostgreSQL_ Documentation_ 8.1_ Encryption Options_files/main.js"></script>
+  
+
+</body></html>

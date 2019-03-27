@@ -1,10 +1,14 @@
 DROP TABLE IF EXISTS past_rentals;
 DROP TABLE IF EXISTS current_rentals;
+DROP TABLE IF EXISTS rentals;
+DROP TABLE IF EXISTS transactions;
 DROP TABLE IF EXISTS stock_items;
+DROP TABLE IF EXISTS credit_cards;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS sizes;
 DROP TABLE IF EXISTS item_status_codes;
 DROP TABLE IF EXISTS item_themes;
+DROP TABLE IF EXISTS rental_return_codes;
 
 CREATE TYPE flag AS ENUM ('0','1','2');
 -- 0 = 'All ok', 1 = 'Returned items late or damaged', 2 = 'Banned after previous loss written off'
@@ -61,4 +65,41 @@ CREATE TABLE item_themes (
   id SERIAL2 PRIMARY KEY,
   theme_code INT2 REFERENCES theme_codes(id) ON DELETE CASCADE,
   item_id INT4 REFERENCES stock_items(id) ON DELETE CASCADE
+);
+
+CREATE TABLE rental_return_codes (
+  id SERIAL2 PRIMARY KEY,
+  meaning VARCHAR(255)
+);
+
+CREATE TABLE credit_cards (
+  -- these should be deleted when the transaction is closed
+  -- all this table's data should be encrypted, stored somewhere safe and deleted asap
+  id SERIAL2 PRIMARY KEY,
+  totally_safe_number VARCHAR(255),
+  start_date DATE,
+  end_date DATE,
+  customer_id INT4 REFERENCES customers(id) ON DELETE CASCADE
+);
+
+CREATE TABLE transactions (
+  -- this table should periodically be archived
+  id SERIAL8 PRIMARY KEY,
+  transaction_date DATE,
+  customer_id INT4 REFERENCES customers(id) NOT NULL,
+  credit_card INT2 REFERENCES credit_cards(id) ON DELETE SET NULL,
+  other_payment VARCHAR(255),
+  deposit_paid INT4,
+  balance_paid INT4,
+  refund_paid INT4
+);
+
+CREATE TABLE rentals (
+  id SERIAL8 PRIMARY KEY,
+  customer_id INT4 REFERENCES customers(id) NOT NULL,
+  stock_item_id INT4 REFERENCES stock_items(id) NOT NULL,
+  rental_date DATE,
+  return_due_date DATE,
+  return_code INT2 REFERENCES rental_return_codes(id),
+  transaction_id INT8 REFERENCES transactions(id) ON DELETE SET NULL
 );
