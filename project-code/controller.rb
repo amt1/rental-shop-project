@@ -11,6 +11,18 @@ get '/crms' do
   erb(:home)
 end
 
-get '/crms/main' do
+post '/crms/main' do
   erb(:main_menu)
+end
+
+get '/crms/stock' do
+  erb(:stock_menu)
+end
+
+get '/crms/customers' do
+  erb(:customers_menu)
+end
+
+get '/crms/rentals' do
+  erb(:rentals_menu)
 end

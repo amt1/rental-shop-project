@@ -11,14 +11,18 @@
         <div class="info-box">
         <%= DateTime.now.strftime("%d/%m/%Y %H:%M") %>
           <br />
-          <form method="post" action = "/crms/main">
-            <% logged_in = true %>
-            <% if logged_in %>
-            <label for = "password">Login: </label>
-            <input class="textfield" type = "password" id="password" name="password" size="15" />
-            <% end %>
+          <% if request.path_info == '/crms' %>
+            <form method="post" action = "/crms/main">
+              <label for = "password">Login: </label>
+              <input class="textfield" type = "password" id="password" name="password" size="15" />
               <input type="submit" class="button" value="Main Menu" />
-          </form>
+            </form>
+            <% else %>
+              <form method="get" action = "/crms">
+                <input type="submit" class="greybutton" value="Log Out" />
+              </form>
+            <% end %>
+
 
         </div>
         <div class="top-left">
@@ -27,10 +31,13 @@
         </div>
       </div>
       <nav>
+        <% if request.path_info != '/crms' %>
       <ul id="navbar">
-        <li><a href="index.html">Page 1</a> </li>
-        <li><a href="page2.html">Page 2</a></li>
+        <li><a href="/crms/stock">Stock</a> </li>
+        <li><a href="/crms/customers">Customers</a></li>
+        <li><a href="/crms/rentals">Rentals</a></li>
       </ul>
+      <% end %>
       </nav>
       </div>
 
