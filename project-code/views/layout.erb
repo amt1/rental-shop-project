@@ -2,11 +2,41 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Rental Management System</title>
+    <title>CRuMbS: Costume Rental Management System</title>
     <link rel="stylesheet" href="/styles.css" type="text/css" />
   </head>
   <body>
-    <!--  DateTime.now.strftime("%d/%m/%Y %H:%M") -->
+    <div class="container" id="top">
+      <div class="top-row">
+        <div class="info-box">
+        <%= DateTime.now.strftime("%d/%m/%Y %H:%M") %>
+          <br />
+          <form method="post" action = "/crms/main">
+            <% logged_in = true %>
+            <% if logged_in %>
+            <label for = "password">Login: </label>
+            <input class="textfield" type = "password" id="password" name="password" size="15" />
+            <% end %>
+              <input type="submit" class="button" value="Main Menu" />
+          </form>
+
+        </div>
+        <div class="top-left">
+        <div class="top-heading">
+        <h1>CRuMbS: Costume Rental Management System</h1>
+        </div>
+      </div>
+      <nav>
+      <ul id="navbar">
+        <li><a href="index.html">Page 1</a> </li>
+        <li><a href="page2.html">Page 2</a></li>
+      </ul>
+      </nav>
+      </div>
+
+<div class="main">
     <%= yield %>
+  </div> <!-- end main -->
+  </div> <!-- end container -->
   </body>
 </html>
