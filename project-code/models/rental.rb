@@ -1,4 +1,6 @@
 require_relative('../db/sql_runner.rb')
+require_relative( './customer.rb' )
+require_relative( './stock_item.rb' )
 
 class Rental
 
@@ -24,6 +26,14 @@ def save
   @id = SqlRunner.run(sql, values).first['id'].to_i
 end
 
+def update
+  sql = 'UPDATE rentals
+  SET (customer_id, stock_item_id, rental_date, return_due_date, return_code, transaction_id, theatre)
+  = ($1, $2, $3, $4, $5, $6, $7);'
+  values = [@customer_id, @stock_item_id, @rental_date, @return_due_date, @return_code, @transaction_id, @theatre]
+  SqlRunner.run(sql, values)
+end
+
 def self.list_all
   sql = 'SELECT * FROM rentals;'
   return SqlRunner.run(sql).map { |rental| Rental.new(rental)  }
@@ -47,6 +57,45 @@ def delete
   SqlRunner.run( sql, values )
 end
 # end database CRUD functions
+
+# rent and return items
+  def rent(stock_item_id, customer_id, rental_date, return_due_date, theatre)
+# see what the form sends, whether these arguments should be
+# listed or an options hash 
+    @stock_item_id=stock_item_id
+    @customer_id=customer_id
+    @theatre=theatre
+    @rental_date=rental_date if (rental_date !=nil) else @rental_date=Date.today.strftime('%Y-%m-%d')
+    if (return_due_date !=nil)
+      @return_due_date=return_due_date
+    elsif theatre
+      @return_due_date=(rental_date+7).strftime('%Y-%m-%d')
+    else
+      @return_due_date=(rental_date+2).strftime('%Y-%m-%d')
+    end
+    @return_code=1
+    update
+    # @transaction_id=Transaction.new(@id).id
+    # update
+    # add transactions as an extension later
+    # can we avoid updating twice?
+
+  end
+# end rent and return items
+
+# database info functions
+
+def get_return_status_msg
+  sql='SELECT meaning FROM rental_return_codes WHERE id = $1;'
+  values=[@return_code]
+  return SqlRunner.run(sql,values).first.map { |status| status[1] }[0]
+end
+
+def self.list_current_rentals
+  sql='SELECT * FROM rentals WHERE return_code = 1 ORDER BY return_due_date;'
+  return SqlRunner.run(sql).map { |rental| Rental.new(rental)  }
+end
+# end database info functions
 
 # object getters and setters
 
