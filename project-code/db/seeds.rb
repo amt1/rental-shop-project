@@ -7,7 +7,8 @@ require_relative('../models/stock_item.rb')
   'measurements' => 'Standard Size',
   'cleaning_instructions' => 'Delicate Wash at 30, No Spin, No Tumble Dry',
   'status' => '1',
-  'colour' => 'White'
+  'colour' => 'White',
+  'price' => 10
 }
 @baby_yoda = StockItem.new(@costume1)
 @costume2 = {
@@ -16,7 +17,8 @@ require_relative('../models/stock_item.rb')
   'measurements' => 'Standard Size',
   'cleaning_instructions' => 'Delicate Wash at 30, No Spin, No Tumble Dry',
   'status' => '1',
-  'colour' => 'Red'
+  'colour' => 'Red',
+  'price' => 5
 }
 @redshirt = StockItem.new(@costume2)
 

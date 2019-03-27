@@ -58,7 +58,8 @@ CREATE TABLE stock_items (
   status INT2 REFERENCES item_status_codes(id),
 --  themes INT2[],
 --  themes VARCHAR,
-  colour colour_names
+  colour colour_names,
+  price INT2
 );
 
 CREATE TABLE item_themes (
@@ -102,5 +103,6 @@ CREATE TABLE rentals (
   rental_date DATE,
   return_due_date DATE,
   return_code INT2 REFERENCES rental_return_codes(id),
-  transaction_id INT8 REFERENCES transactions(id) ON DELETE SET NULL
+  transaction_id INT8 REFERENCES transactions(id) ON DELETE SET NULL,
+  theatre BOOLEAN
 );

@@ -12,7 +12,8 @@ class TestStockItem < MiniTest::Test
       'measurements' => 'Standard Size',
       'cleaning_instructions' => 'Delicate Wash at 30, No Spin, No Tumble Dry',
       'status' => '1',
-      'colour' => 'White'
+      'colour' => 'White',
+      'price' => 10
     }
     @my_test_costume = StockItem.new(@costume1)
     @costume2 = {
@@ -21,7 +22,8 @@ class TestStockItem < MiniTest::Test
       'measurements' => 'Standard Size',
       'cleaning_instructions' => 'Delicate Wash at 30, No Spin, No Tumble Dry',
       'status' => '1',
-      'colour' => 'Red'
+      'colour' => 'Red',
+      'price' => 5
     }
     @redshirt = StockItem.new(@costume2)
   end
@@ -105,11 +107,15 @@ class TestStockItem < MiniTest::Test
     @redshirt.set_measurements('Massive, just massive')
     @redshirt.update
     assert_equal('Massive, just massive', StockItem.find_by_id(@redshirt.id).get_measurements)
+    @redshirt.set_price(3)
+    @redshirt.update
+    assert_equal('3', StockItem.find_by_id(@redshirt.id).price)
+
   # binding.pry
   end
 
   def test_get_item_themes
-    test_item=StockItem.find_by_id(51)
+    test_item=StockItem.find_by_id(1)
     # p test_item.get_themes_list_names
   # binding.pry
     assert_equal(['Sci Fi','Star Wars'], test_item.get_themes_list_names)

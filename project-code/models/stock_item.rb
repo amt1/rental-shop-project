@@ -3,7 +3,7 @@ require('pry-byebug')
 
 class StockItem
 
-attr_reader :id, :name, :size, :status, :colour
+attr_reader :id, :name, :size, :status, :colour, :price
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
@@ -15,16 +15,16 @@ attr_reader :id, :name, :size, :status, :colour
     # @themes = options['themes']  # array of codes to look up
     # themes moved to a join table now
     @colour = options['colour']
-
+    @price = options['price']
     # p @themes
   end
 
 ## start database CRUD functions
 
   def save
-    sql='INSERT INTO stock_items (name, size, measurements, cleaning_instructions, status, colour)
-    VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;'
-    values = [@name, @size, @measurements, @cleaning_instructions, @status, @colour]
+    sql='INSERT INTO stock_items (name, size, measurements, cleaning_instructions, status, colour, price)
+    VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id;'
+    values = [@name, @size, @measurements, @cleaning_instructions, @status, @colour, @price]
     @id = SqlRunner.run(sql, values).first['id'].to_i
 
 # originally tried to store multiple themes using an array, which seemed like it almost worked.
@@ -71,9 +71,9 @@ attr_reader :id, :name, :size, :status, :colour
   end
 
   def update
-    sql = 'UPDATE stock_items SET (name, size, measurements, cleaning_instructions, status, colour)
-    = ($1, $2, $3, $4, $5, $6) WHERE id = $7;'
-    values = [@name, @size, @measurements, @cleaning_instructions, @status, @colour, @id]
+    sql = 'UPDATE stock_items SET (name, size, measurements, cleaning_instructions, status, colour, price)
+    = ($1, $2, $3, $4, $5, $6, $7) WHERE id = $8;'
+    values = [@name, @size, @measurements, @cleaning_instructions, @status, @colour, @price, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -158,6 +158,10 @@ attr_reader :id, :name, :size, :status, :colour
     @status = new_status_code
   end
 
+  def set_price(new_price)
+    @price=new_price
+  end
+  
   def get_themes_array
     return @themes
   end
