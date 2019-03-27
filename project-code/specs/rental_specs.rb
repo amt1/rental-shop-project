@@ -98,18 +98,22 @@ class TestRental < MiniTest::Test
     @stanley_redshirt = Rental.new(@rental1)
     @stanley_yoda = Rental.new(@rental2)
     @tommy_yoda = Rental.new(@rental3)
+
+    @stanley_redshirt.save
+    @stanley_yoda.save
+    @tommy_yoda.save
   end
 
-def test_return_rental
-  @tommy_yoda.save
-  @baby_yoda.save
-  assert_equal(1, @tommy_yoda.return_code )
-  assert_equal(4, @baby_yoda.status)
-  @tommy_yoda.return_rental(2,@baby_yoda,1)
-  assert_equal(2, @tommy_yoda.return_code )
-  assert_equal(1, @baby_yoda.status)
-# binding.pry
-end
+# def test_return_rental
+#   @tommy_yoda.save
+#   @baby_yoda.save
+#   assert_equal(1, @tommy_yoda.return_code )
+#   assert_equal(4, @baby_yoda.status)
+#   @tommy_yoda.return_rental(2,@baby_yoda,1)
+#   assert_equal(2, @tommy_yoda.return_code )
+#   assert_equal(1, @baby_yoda.status)
+# # binding.pry
+# end
 
 
   # def test_list_current_rentals
@@ -124,11 +128,20 @@ end
   #
   # def test_save_rental
   #   @stanley_redshirt.save
+  #   @stanley_yoda.save
+  #   @tommy_yoda.save
   #   # p Rental.list_all
   #   @test_rental =  Rental.find_by_id(@stanley_redshirt.id)
   #   # binding.pry
   #   assert_equal(@redshirt.id, @test_rental.get_stock_item_id)
   # end
+  def test_list_current_rentals_with_name
+    rentals_hash = Rental.list_current_rentals_with_names
+    p rentals_hash
+    p rentals_hash.map(&:values)
+    binding.pry
+
+  end
   #
   # def test_update_rental
   #   @stanley_redshirt.save

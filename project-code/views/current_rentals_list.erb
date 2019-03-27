@@ -1,0 +1,33 @@
+<h2>Current Rentals List</h2>
+
+
+<% rentals_array = Rental.list_current_rentals_with_names %>
+<table id="all-current-rentals" cellspacing="5" cellpadding="5">
+  <tr>
+    <th headers="id">Rental ID</th>
+    <th headers="transaction_id">Transaction ID</th>
+    <th headers="customer_id">Customer ID</th>
+    <th headers="customer_name">Customer Name</th>
+    <th headers="stock_item_id">Stock Item ID</th>
+    <th headers="stock_item_name">Stock Item Name</th>
+    <th headers="rental_date">Rental Date</th>
+    <th headers="return_due_date">Return Due Date</th>
+    <th headers="return_code">Return Code</th>
+    <th headers="theatre">Theatre Rental</th>
+</tr>
+<% rows = rentals_array.count - 1 %>
+<% rentals_array.each do |rental| %>
+<tr>
+  <td><%= rental[0] %></td>
+  <td><%= p (rental[6]==nil) ? 'N/A' : rental[6] %></td>
+  <td><%= rental[1] %></td>
+  <td><%= rental[8] %></td>
+  <td><%= rental[2] %></td>
+  <td><%= rental[9] %></td>
+  <td><%= rental[3] %></td>
+  <td><%= rental[4] %></td>
+  <td><%= rental[5] %></td>
+  <td><%= p (rental[7]=='t') ? 'Yes' : 'No' %></td>
+</tr>
+<% end %>
+</table>

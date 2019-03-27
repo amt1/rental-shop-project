@@ -2,6 +2,7 @@ body {
 /*  background-color: antiquewhite;
 background-color: cornsilk;
 background-color: linen;
+background-color: cornsilk;
 */
 background-color: oldlace;
 
@@ -41,7 +42,8 @@ div.info-box label {
 } */
 div.info-box input.button {
   margin: 10px;
-  background-color: red;
+/*  background-color: red; */
+background-color: mediumpurple;
   color: white;
 }
 
@@ -71,9 +73,12 @@ nav ul {
 nav li, input.redbutton {
   display: inline;
   color: white;
-  background-color: red;
+/*  background-color: red;
+border: 2px solid orange;
+*/
+background-color:  mediumpurple;
+border: 2px solid mediumslateblue;
   padding: 20px;
-  border: 2px solid orange;
   border-radius: 10px;
   margin: 10px;
 }
@@ -146,4 +151,19 @@ color: black;
   width: 100%;
   justify-content: center;
   margin: auto;
+}
+
+table#all-current-rentals {
+  margin: 3em;
+/*  border: 3px double black; */
+  padding: 1em;
+}
+
+th, td {
+  padding: 0.5em;
+  border-bottom: 1px solid black;
+}
+
+th {
+  font-size: 1.1em;
 }

@@ -1,0 +1,32 @@
+<h2>Current Rentals List</h2>
+
+
+<% rentals_array = Rental.list_current_rentals_with_names %>
+<table id="all-current-rentals">
+  <tr>
+    <th headers="id">Rental ID</th>
+    <th headers="transaction_id">Transaction ID</th>
+    <th headers="customer_id">Customer ID</th>
+    <th headers="customer_name">Customer Name</th>
+    <th headers="stock_item_id">Stock Item ID</th>
+    <th headers="stock_item_name">Stock Item Name</th>
+    <th headers="rental_date">Rental Date</th>
+    <th headers="return_due_date">Return Due Date</th>
+    <th headers="return_code">Return Code</th>
+    <th headers="theatre">Theatre Rental</th>
+</tr>
+<% rentals_hash.each |rental| do %>
+<tr>
+  <td><%= rentals_array[0] %></td>
+  <td><%= rentals_array[6] %></td>
+  <td><%= rentals_array[1] %></td>
+  <td><%= rentals_array[8] %></td>
+  <td><%= rentals_array[2] %></td>
+  <td><%= rentals_array[9] %></td>
+  <td><%= rentals_array[3] %></td>
+  <td><%= rentals_array[4] %></td>
+  <td><%= rentals_array[5] %></td>
+  <td><%= rentals_array[7] %></td>
+</tr>
+<% end %>
+</table>

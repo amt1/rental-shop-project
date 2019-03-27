@@ -117,6 +117,16 @@ def self.list_current_rentals
   sql='SELECT * FROM rentals WHERE return_code = 1 ORDER BY return_due_date;'
   return SqlRunner.run(sql).map { |rental| Rental.new(rental)  }
 end
+
+def self.list_current_rentals_with_names
+  sql='SELECT rentals.*, customers.name AS custname, stock_items.name AS stockname
+  FROM rentals JOIN customers ON rentals.customer_id = customers.id
+  JOIN stock_items on rentals.stock_item_id = stock_items.id
+  WHERE return_code = 1
+  ORDER BY return_due_date;'
+  sql_rentals_hash=SqlRunner.run(sql)
+  return sql_rentals_hash.map(&:values)
+end
 # end database info functions
 
 # object getters and setters
