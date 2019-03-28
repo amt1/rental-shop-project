@@ -98,8 +98,8 @@ CREATE TABLE transactions (
 CREATE TABLE rentals (
   -- this table should periodically be archived too
   id SERIAL8 PRIMARY KEY,
-  customer_id INT4 REFERENCES customers(id) NOT NULL,
-  stock_item_id INT4 REFERENCES stock_items(id) NOT NULL,
+  customer_id INT4 REFERENCES customers(id) ON DELETE SET NULL,
+  stock_item_id INT4 REFERENCES stock_items(id) ON DELETE SET NULL,
   rental_date DATE,
   return_due_date DATE,
   return_code INT2 REFERENCES rental_return_codes(id),

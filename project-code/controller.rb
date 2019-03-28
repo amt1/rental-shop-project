@@ -54,8 +54,9 @@ post '/crms/customers/update_customer' do
   redirect '/crms/customers/list_all_customers'
 end
 
-post '/crms/customers/customer_delete' do
-  @my_customer=Customer.find_by_id(params[:customer_id])
+post '/crms/customers/delete_customer' do
+  @delete_id = params[:id]
+  @my_customer=Customer.find_by_id(@delete_id)
   @my_customer.delete
   redirect '/crms/customers/list_all_customers'
 end
