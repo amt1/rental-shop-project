@@ -1,3 +1,4 @@
+/* Main structure */
 body {
 /*  background-color: antiquewhite;
 background-color: cornsilk;
@@ -20,6 +21,7 @@ div.top-left {
   width: auto;
 }
 div.info-box {
+  /* this needs fixing to make it responsive */
 /* float: right;
 margin: 20px;
 clear: left; */
@@ -36,20 +38,12 @@ right: 20px;
   text-align: center;
   line-height: 1.5em;
 }
-/*
-div.info-box label {
-  margin: 15px;
-} */
+
 div.info-box input.button {
   margin: 10px;
 /*  background-color: red; */
 background-color: mediumpurple;
   color: white;
-}
-
-input.textfield {
-  background: white;
-  color: black;
 }
 
 nav {
@@ -70,36 +64,16 @@ nav ul {
   right: 20px; */
 }
 
-nav li, input.redbutton {
+nav li {
   display: inline;
   color: white;
-/*  background-color: red;
-border: 2px solid orange;
-*/
-background-color:  mediumpurple;
-border: 2px solid mediumslateblue;
+  background-color:  mediumpurple;
+  border: 2px solid mediumslateblue;
   padding: 20px;
   border-radius: 10px;
   margin: 10px;
 }
-input.greybutton {
-  display: inline;
-  color: white;
-  background-color: gray;
-  padding: 20px;
-  border: 2px solid oldlace;
-  border-radius: 10px;
-  margin: 10px;
-}
-input.smallwhitebutton {
-  display: inline;
-  color: black;
-  background-color: white;
-  padding: 5px;
-  border: 1px solid black;
-  border-radius: 10px;
-  margin: 10px;
-}
+
 nav li a, input {
   font-family: Tahoma, verdana, sans-serif;
   text-decoration: none;
@@ -118,6 +92,7 @@ div.top-heading {
   margin: 20px;
   text-align: center;
 }
+
 
 .top-heading h1 {
   font-weight: normal;
@@ -161,23 +136,70 @@ color: black;
   margin: auto;
   justify-content: center;
 }
+.half {
+  width: 40%;
+  margin: 0 3em 0 3em;
+  clear: none;
+  display: flex;
+  justify-content: center;
+}
+
+.half img {
+/*  max-width: 100%; */
+  padding: 1em;
+  border: 5px double black;
+  overflow: hidden;
+}
+footer.flex-container {
+  display: flex;
+  height: 500px;
+  align-items: stretch;
+}
+/* commonly used */
+
+.caption {
+  clear: both;
+  text-align: left;
+  font-weight: lighter;
+  font-style: italic;
+  font-size: 1.5em;
+  display: block;
+  width: 100%;
+}
+
+/* Forms */
+
 div.formcontainer {
   width: 80%;
   margin: auto;
 }
-table.data {
-  margin: 3em;
-/*  border: 3px double black; */
-  padding: 1em;
+
+form input {
+  background: white;
+  color: black;
+}
+input.textfield {
+  background: white;
+  color: black;
 }
 
-th, td {
-  padding: 0.5em;
-  border-bottom: 1px solid black;
+input.greybutton {
+  display: inline;
+  color: white;
+  background-color: gray;
+  padding: 20px;
+  border: 2px solid oldlace;
+  border-radius: 10px;
+  margin: 10px;
 }
-
-th {
-  font-size: 1.1em;
+input.smallwhitebutton {
+  display: inline;
+  color: black;
+  background-color: white;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 10px;
 }
 #returnsform {
   display: flex;
@@ -204,6 +226,24 @@ legend {
   font-family: Tahoma, verdana, sans-serif;
   margin-top: 2em;
 }
+/* tables */
+
+table.data {
+  margin: 3em;
+/*  border: 3px double black; */
+  padding: 1em;
+}
+
+th, td {
+  padding: 0.5em;
+  border-bottom: 1px solid black;
+}
+
+th {
+  font-size: 1.1em;
+}
+ /* basic styles */
+
 .floatright {
   float: right;
 }
@@ -222,28 +262,22 @@ legend {
 .center {
   text-align: center;
 }
-.half {
-  width: 40%;
-  margin: 0 3em 0 3em;
-  clear: none;
-  display: flex;
-  justify-content: center;
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
 }
 
-.half img {
-  width: 100%;
-}
-footer.flex-container {
-  display: flex;
-  height: 500px;
-  align-items: stretch;
-}
-.caption {
-  clear: both;
-  text-align: left;
-  font-weight: lighter;
-  font-style: italic;
-  font-size: 1.5em;
-  display: block;
-  width: 100%;
+/* previous styles, not currently used */
+
+
+input.redbutton {
+  display: inline;
+  color: white;
+  background-color: red;
+  border: 2px solid orange;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px;
 }

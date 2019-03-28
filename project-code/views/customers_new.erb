@@ -1,0 +1,34 @@
+<h2>Add New Customer</h2>
+<div class=formcontainer">
+  <div class="floatright half">
+
+  <form method="post" id="new-customer-form" action="/crms/customers/process_new" />
+    <fieldset>
+      <legend>Contact Details: </legend>
+      <label for="name"><strong>Customer Name: </strong></label>
+      <input type="text" name="name" id="name" />
+      <table><tr><td>
+      <label for="phone">Phone: </label>
+      </td><td>
+      <input type="text" name="phone" id="phone" maxlength="15" />
+      </td></tr>
+      <tr><td><label for="email">Email: </label></td>
+        <td>
+      <input type="email" name="email" id="email" />
+      </td></tr></table>
+      <label for="address">Address: </label>
+      <br class="clear" />
+      <textarea name="address" id="address" form="new-customer-form" rows="6" cols="50"></textarea>
+    </fieldset>
+
+    <input type="hidden" name="account_balance" value=0 />
+    <input type="hidden" name="warnings" value=0 />
+    <div class="left">
+      <input type="submit" class="greybutton" value="Add Customer" />
+    </div>
+  </form>
+  </div> <!-- end right half div -->
+    <div class="floatleft half center">
+      <img src="/photos/baby-yoda.jpg" alt="New customer photo" style="width: 400px; height: 500px;" />
+    </div> <!-- end left half div -->
+</div> <!-- end formcontainer -->
