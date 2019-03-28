@@ -77,6 +77,72 @@ attr_reader :id, :name, :size, :status, :colour, :price
     SqlRunner.run(sql, values)
   end
 
+  def self.list_all
+    sql='SELECT * FROM stock_items;'
+    return SqlRunner.run(sql).map { |stock_item| StockItem.new(stock_item)  }
+  end
+
+  def self.list_all_available
+    sql='SELECT * FROM stock_items WHERE status = 1;'
+    return SqlRunner.run(sql).map { |stock_item| StockItem.new(stock_item)  }
+  end
+
+  def self.list_all_with_sizes
+    sql='SELECT stock_items.*, sizing, standard_size FROM sizes
+    JOIN stock_items ON sizes.id = stock_items.size ORDER BY stock_items.name, size;'
+    sql_stock_items_hash=SqlRunner.run(sql)
+    return sql_stock_items_hash.map(&:values)
+  end
+
+  def self.list_all_with_sizes_and_status
+    sql='SELECT stock_items.*, sizing, standard_size, meaning FROM sizes
+    JOIN stock_items ON sizes.id = stock_items.size
+    JOIN item_status_codes ON stock_items.status = item_status_codes.id
+    ORDER BY stock_items.name, size;'
+    sql_stock_items_hash=SqlRunner.run(sql)
+    return sql_stock_items_hash.map(&:values)
+  end
+
+  def self.list_all_with_sizes_status_and_themes
+    sql='SELECT stock_items.*, sizing, standard_size, meaning, theme_code, theme_type, theme  FROM sizes
+    JOIN stock_items ON sizes.id = stock_items.size
+    JOIN item_status_codes ON stock_items.status = item_status_codes.id
+    LEFT JOIN item_themes ON stock_items.id = item_id
+    LEFT JOIN theme_codes ON item_themes.theme_code = theme_codes.id
+    ORDER BY stock_items.name, size;'
+    sql_stock_items_hash=SqlRunner.run(sql)
+    return sql_stock_items_hash.map(&:values)
+  end
+
+  def self.list_all_with_sizes_and_status_pick_theme(theme_code)
+    sql='SELECT stock_items.*, sizing, standard_size, meaning, theme_type, theme FROM sizes
+    JOIN stock_items ON sizes.id = stock_items.size
+    JOIN item_status_codes ON stock_items.status = item_status_codes.id
+    JOIN item_themes ON stock_items.id = item_id
+    JOIN theme_codes ON item_themes.theme_code = theme_codes.id
+    WHERE theme_code = $1
+    ORDER BY stock_items.name, size;'
+    values = [theme_code]
+    sql_stock_items_hash=SqlRunner.run(sql, values)
+    return sql_stock_items_hash.map(&:values)
+  end
+
+  def self.list_all_with_one_size(size_code)
+    sql='SELECT stock_items.*, sizing, standard_size FROM sizes
+    JOIN stock_items ON sizes.id = stock_items.size WHERE stock_items.size = $1 ORDER BY stock_items.name;'
+    values = [size_code]
+    sql_stock_items_hash=SqlRunner.run(sql, values)
+    return sql_stock_items_hash.map(&:values)
+  end
+
+  def self.list_all_available_with_one_size(size_code)
+    sql='SELECT stock_items.*, sizing, standard_size FROM sizes
+    JOIN stock_items ON sizes.id = stock_items.size WHERE stock_items.size = $1 AND status=1 ORDER BY stock_items.name;'
+    values = [size_code]
+    sql_stock_items_hash=SqlRunner.run(sql, values)
+    return sql_stock_items_hash.map(&:values)
+  end
+
   def get_themes_list_names
     theme_names=[]
     # @themes.each do |theme_code|

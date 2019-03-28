@@ -18,7 +18,7 @@ class TestStockItem < MiniTest::Test
     @my_test_costume = StockItem.new(@costume1)
     @costume2 = {
       'name' => 'Ensign Redshirt',
-      'size' => '1',
+      'size' => '4',
       'measurements' => 'Standard Size',
       'cleaning_instructions' => 'Delicate Wash at 30, No Spin, No Tumble Dry',
       'status' => '1',
@@ -44,7 +44,7 @@ class TestStockItem < MiniTest::Test
   end
 
   def test_get_status_code
-    assert_equal('1',@my_test_costume.get_status_code)
+    assert_equal(1,@my_test_costume.get_status_code)
   end
 
   def test_get_status_msg
@@ -93,12 +93,12 @@ class TestStockItem < MiniTest::Test
     @redshirt.set_name('Ensign Blackshirt')
     @redshirt.update
     assert_equal('Ensign Blackshirt', StockItem.find_by_id(@redshirt.id).name)
-    @redshirt.set_size_code('1')
+    @redshirt.set_size_code('3')
     @redshirt.update
     assert_equal('1', StockItem.find_by_id(@redshirt.id).size)
     @redshirt.set_status_code('2')
     @redshirt.update
-    assert_equal('2', StockItem.find_by_id(@redshirt.id).get_status_code)
+    assert_equal(2, StockItem.find_by_id(@redshirt.id).get_status_code)
     assert_equal('Booked, unavailable', StockItem.find_by_id(@redshirt.id).get_status_msg)
     # p @redshirt.get_status_msg
     @redshirt.set_cleaning_instructions('Nuke it from Orbit')
@@ -114,12 +114,12 @@ class TestStockItem < MiniTest::Test
   # binding.pry
   end
 
-  def test_get_item_themes
-    test_item=StockItem.find_by_id(1)
-    # p test_item.get_themes_list_names
-  # binding.pry
-    assert_equal(['Sci Fi','Star Wars'], test_item.get_themes_list_names)
-  end
+  # def test_get_item_themes
+  #   test_item=StockItem.find_by_id(1)
+  #   # p test_item.get_themes_list_names
+  # # binding.pry
+  #   assert_equal(['Sci Fi','Star Wars'], test_item.get_themes_list_names)
+  # end
 
   def test_set_item_themes
     @redshirt.save

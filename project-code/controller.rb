@@ -61,19 +61,6 @@ post '/crms/customers/delete_customer' do
   redirect '/crms/customers/list_all_customers'
 end
 
-get '/crms/rentals' do
-  erb(:rentals_menu)
-end
-
-get '/crms/rentals/current_rentals_list' do
-  erb(:current_rentals_list)
-end
-
-post '/crms/stock_items/costume_rental_history' do
-  @stock_item_id = params[:stock_item_id]
-  erb(:costume_rental_history)
-end
-
 post '/crms/customers/customer_rentals' do
   @customer_id = params[:customer_id]
   erb(:customer_rentals)
@@ -112,4 +99,21 @@ post '/crms/rentals/process_return' do
   @current_rental.return_rental(@return_code, @my_stock_item, @item_status)
   @msg="You returned "+" #{@my_stock_item.name}"
   redirect '/crms/rentals/current_rentals_list'
+end
+
+get '/crms/rentals' do
+  erb(:rentals_menu)
+end
+
+get '/crms/rentals/current_rentals_list' do
+  erb(:current_rentals_list)
+end
+
+post '/crms/stock_items/costume_rental_history' do
+  @stock_item_id = params[:stock_item_id]
+  erb(:costume_rental_history)
+end
+
+get '/crms/stock_items/list_all_stock' do
+  erb(:list_all_stock)
 end

@@ -1,0 +1,39 @@
+<h2>Complete Stock List</h2>
+
+<% stock_items_array = StockItem.list_all %>
+<table class="data" id="all-stock" cellspacing="5" cellpadding="5">
+  <tr>
+    <th headers="id">Stock ID</th>
+    <th headers="name">Name</th>
+    <th headers="size_code">Size Code</th>
+    <th headers="size">Size</th>
+    <th headers="measurements">Measurements</th>
+    <th headers="cleaning_instructions">Cleaning Instructions</th>
+    <th headers="status_code">Status Code</th>
+    <th headers="status">Status</th>
+    <th headers="colour">Colour</th>
+    <th headers="price">Price</th>
+    <th headers="details_button">Edit / Delete</th>
+    <th headers="rental_button">Rent</th>
+
+</tr>
+<% customers_array.each do |customer_object| %>
+  <tr>
+    <td><%=customer_object.id%></td>
+    <td><%=customer_object.name%></td>
+    <td><%=customer_object.get_phone%></td>
+    <td><%=customer_object.get_email%></td>
+    <td><%=customer_object.get_address%></td>
+    <td><%=customer_object.get_account_balance%></td>
+    <td><%=customer_object.get_warnings%></td>
+  <td><form method="post" action="/crms/customers/customer_rentals">
+    <input type="hidden" name="customer_id" value ="<%=customer_object.id%>" />
+    <input type="submit" class="darkredbutton" value="View Rentals" />
+</form></td>
+  <td><form method="post" action="/crms/customers/customer_details">
+    <input type="hidden" name="customer_id" value ="<%=customer_object.id%>" />
+    <input type="submit" class="darkredbutton" value="Edit / Delete" />
+</form></td>
+</tr>
+<% end %> <!-- end each -->
+</table>
