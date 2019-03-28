@@ -69,6 +69,16 @@ get '/crms/rentals/current_rentals_list' do
   erb(:current_rentals_list)
 end
 
+post '/crms/stock_items/costume_rental_history' do
+  @stock_item_id = params[:stock_item_id]
+  erb(:costume_rental_history)
+end
+
+post '/crms/customers/customer_rentals' do
+  @customer_id = params[:customer_id]
+  erb(:customer_rentals)
+end
+
 post '/crms/customers/process_new' do
   @my_customer={
     'name' => params[:name],

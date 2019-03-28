@@ -23,7 +23,7 @@
     <td><%=customer_object.get_account_balance%></td>
     <td><%=customer_object.get_warnings%></td>
   <td><form method="post" action="/crms/customers/customer_rentals">
-    <input type="hidden" name="customer" value ="<%=customer_object%>" />
+    <input type="hidden" name="customer_id" value ="<%=customer_object.id%>" />
     <input type="submit" class="darkredbutton" value="View Rentals" />
 </form></td>
   <td><form method="post" action="/crms/customers/customer_details">

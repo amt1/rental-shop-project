@@ -127,6 +127,28 @@ def self.list_current_rentals_with_names
   sql_rentals_hash=SqlRunner.run(sql)
   return sql_rentals_hash.map(&:values)
 end
+
+def self.list_customer_rentals_with_names(customer_id)
+  sql='SELECT rentals.*, customers.name AS custname, stock_items.name AS stockname
+  FROM rentals JOIN customers ON rentals.customer_id = customers.id
+  JOIN stock_items on rentals.stock_item_id = stock_items.id
+  WHERE rentals.customer_id = $1
+  ORDER BY return_due_date;'
+  values=[customer_id]
+  sql_rentals_hash=SqlRunner.run(sql,values)
+  return sql_rentals_hash.map(&:values)
+end
+
+def self.list_item_rentals_with_names(stock_item_id)
+  sql='SELECT rentals.*, customers.name AS custname, stock_items.name AS stockname
+  FROM rentals JOIN customers ON rentals.customer_id = customers.id
+  JOIN stock_items on rentals.stock_item_id = stock_items.id
+  WHERE rentals.stock_item_id = $1
+  ORDER BY return_due_date;'
+  values=[customer_id]
+  sql_rentals_hash=SqlRunner.run(sql,values)
+  return sql_rentals_hash.map(&:values)
+end
 # end database info functions
 
 # object getters and setters
