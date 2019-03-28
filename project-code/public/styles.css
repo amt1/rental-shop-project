@@ -1,3 +1,36 @@
+/* basic styles */
+
+.floatright {
+ float: right;
+}
+.floatleft {
+ float: left;
+}
+.clear {
+ clear: both;
+}
+.clearleft {
+ clear: left;
+}
+.clearright {
+ clear: right;
+}
+.center {
+ text-align: center;
+}
+.left {
+ text-align: left;
+}
+.right {
+ text-align: right;
+}
+
+a:link {
+ color: black;
+}
+a:visited, a:hover, a:active {
+ color: darkred;
+}
 /* Main structure */
 body {
 /*  background-color: antiquewhite;
@@ -6,13 +39,22 @@ background-color: linen;
 background-color: cornsilk;
 */
 background-color: oldlace;
-
-
+background-size: auto;
+border: 2px solid lightyellow;
   font-family: 'Helvetica Neue', verdana, sans-serif;
+  margin: 0;
+}
+div.container {
+  width: 100%;
+  color: black;
 }
 
 div.top-row {
-  height: 200px;
+  height: 230px;
+  /* background-image: url('/graphics/curtain-269920_1920.jpg'); */
+  background-image: url('/graphics/theater-551797_1920.jpg');
+  background-position: bottom;
+  background-size: cover;
 }
 div.top-left {
   float: left;
@@ -37,21 +79,28 @@ right: 20px;
   padding: 20px;
   text-align: center;
   line-height: 1.5em;
+  font-size: 1.1em;
 }
-
+div.info-box, input.textfield {
+  line-height: 1.25em;
+}
 div.info-box input.button {
   margin: 10px;
 /*  background-color: red; */
 background-color: mediumpurple;
   color: white;
+  font-size: 1em;
+  padding: 0.5em;
 }
-
+.date {
+  padding-bottom: 0.5em;
+}
 nav {
   float: left;
   clear: none;
-  height: 65px;
+  height: 80px;
   margin-bottom: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   border-bottom: 3px solid black;
   width: 100%;
 }
@@ -64,24 +113,25 @@ nav ul {
   right: 20px; */
 }
 
-nav li {
+nav li, input.blackbutton {
   display: inline;
-  color: white;
-  background-color:  mediumpurple;
-  border: 2px solid mediumslateblue;
-  padding: 20px;
+  color: antiquewhite;
+  background-color:  black;
+  border: 2px solid antiquewhite;
+  padding: 10px 20px 10px 20px;
   border-radius: 10px;
-  margin: 10px;
+  margin: 0 10px 0 10px;
 }
 
-nav li a, input {
+nav li a:link, nav li a:visited, nav li a:hover, nav li a:active, nav input, input.blackbutton {
   font-family: Tahoma, verdana, sans-serif;
   text-decoration: none;
-  color: white;
+  color: antiquewhite;
   font-size: 1.25rem;
 }
 
 nav li a:active {
+  color: antiquewhite;
   position: relative;
   top: -2px;
 }
@@ -96,8 +146,11 @@ div.top-heading {
 
 .top-heading h1 {
   font-weight: normal;
-  font-size: 2em;
-  font-family: Tahoma, verdana, sans-serif;
+  font-size: 3em;
+  font-family: 'SignPainter', cursive, sans-serif;
+  color: antiquewhite;
+  text-shadow: 2px 2px 5px black;
+
 }
 .hero {
   text-align:center;
@@ -127,14 +180,19 @@ text-align:center;
   font-size: 0.5em;
 }
 
-.container {
-color: black;
-}
-
 .main {
-  width: 100%;
+  width: 90%;
+  height: 100%;
   margin: auto;
   justify-content: center;
+  background-color: white;
+  padding: 1em 3em 4em 3em;
+  margin-top: 2em;
+/*  min-height: 300px; */
+  border-bottom: 2px solid black;
+  margin-bottom: 5px;
+  box-shadow: 10px 10px 8px black;
+overflow: auto; /* fixes height problems with floated child elements */
 }
 .half {
   width: 40%;
@@ -150,10 +208,23 @@ color: black;
   border: 5px double black;
   overflow: hidden;
 }
-footer.flex-container {
+footer {
+  height: 200px;
+  background-color: black;
+  background-image: url('/graphics/curtain-269920_1920.jpg');
+  background-position: bottom;
+  background-size: cover;
+  color: white;
   display: flex;
-  height: 500px;
-  align-items: stretch;
+  align-content: baseline;
+  justify-content: center;
+  align-self: flex-end;
+}
+div.bottom {
+  display: flex;
+  align-self: flex-end;
+  justify-content: center;
+  padding-bottom: 1em;
 }
 /* commonly used */
 
@@ -167,11 +238,34 @@ footer.flex-container {
   width: 100%;
 }
 
+.main h2 {
+  font-size: 2.5em;
+  color: darkred;
+  font-weight: lighter;
+  font-family: Tahoma, sans-serif;
+  text-shadow: 1px 1px 5px black;
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+
+/*  font-family: 'SignPainter', cursive, sans-serif; */
+
+}
 /* Forms */
 
+form {
+  font-size: 1.2em;
+  line-height: 1.5em;
+  color: black;
+}
+label {
+  margin-top: 0.5em;
+  padding-top: 0.5em;
+}
 div.formcontainer {
   width: 80%;
   margin: auto;
+  padding-top: 1em;
 }
 
 form input {
@@ -191,6 +285,7 @@ input.greybutton {
   border: 2px solid oldlace;
   border-radius: 10px;
   margin: 10px;
+  font-size: 1em;
 }
 input.smallwhitebutton {
   display: inline;
@@ -200,12 +295,14 @@ input.smallwhitebutton {
   border: 1px solid black;
   border-radius: 10px;
   margin: 10px;
+  font-size: 0.8em;
 }
+/*
 #returnsform {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-}
+} */
 
 fieldset {
   margin-top: 2em;
@@ -241,32 +338,6 @@ th, td {
 
 th {
   font-size: 1.1em;
-}
- /* basic styles */
-
-.floatright {
-  float: right;
-}
-.floatleft {
-  float: left;
-}
-.clear {
-  clear: both;
-}
-.clearleft {
-  clear: left;
-}
-.clearright {
-  clear: right;
-}
-.center {
-  text-align: center;
-}
-.left {
-  text-align: left;
-}
-.right {
-  text-align: right;
 }
 
 /* previous styles, not currently used */

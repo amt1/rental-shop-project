@@ -36,6 +36,11 @@ get '/crms/customers/list_all_customers' do
   erb(:list_all_customers)
 end
 
+post '/crms/customers/customer_details' do
+  @my_customer=params[:customer]
+  erb(:customer_details)
+end
+
 get '/crms/rentals' do
   erb(:rentals_menu)
 end
