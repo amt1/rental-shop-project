@@ -32,6 +32,10 @@ get '/crms/customers/customers_new' do
   erb(:customers_new)
 end
 
+get '/crms/customers/list_all_customers' do
+  erb(:list_all_customers)
+end
+
 get '/crms/rentals' do
   erb(:rentals_menu)
 end

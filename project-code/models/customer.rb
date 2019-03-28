@@ -18,6 +18,17 @@ attr_reader :id, :name
   def get_contact_info
     return [@phone, @email, @address]
   end
+  def get_phone
+    return @phone
+  end
+
+  def get_email
+    return @email
+  end
+
+  def get_address
+    return @address
+  end
 
   def get_account_balance
     return @account_balance

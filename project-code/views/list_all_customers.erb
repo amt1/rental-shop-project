@@ -1,0 +1,35 @@
+<h2>Customer List</h2>
+
+<% customers_array = Customer.list_all %>
+<table class="data" id="all-customers" cellspacing="5" cellpadding="5">
+  <tr>
+    <th headers="id">Customer ID</th>
+    <th headers="name">Name</th>
+    <th headers="phone">Phone</th>
+    <th headers="email">Email</th>
+    <th headers="address">Address</th>
+    <th headers="account_balance">Account Balance</th>
+    <th headers="warnings">Warnings</th>
+    <th headers="rentals_button">View Rentals</th>
+    <th headers="details_button">Edit / Delete</th>
+</tr>
+<% customers_array.each do |customer_object| %>
+  <tr>
+    <td><%=customer_object.id%></td>
+    <td><%=customer_object.name%></td>
+    <td><%=customer_object.get_phone%></td>
+    <td><%=customer_object.get_email%></td>
+    <td><%=customer_object.get_address%></td>
+    <td><%=customer_object.get_account_balance%></td>
+    <td><%=customer_object.get_warnings%></td>
+  <td><form method="post" action="/crms/customers/customer_rentals">
+    <input type="hidden" name="customer" value ="<%=customer_object%>" />
+    <input type="submit" class="smallwhitebutton" value="View Rentals" />
+</form></td>
+  <td><form method="post" action="/crms/customers/customer_details">
+    <input type="hidden" name="customer" value ="<%=customer_object%>" />
+    <input type="submit" class="smallwhitebutton" value="Edit / Delete" />
+</form></td>
+</tr>
+<% end %> <!-- end each -->
+</table>

@@ -11,7 +11,6 @@
     <th headers="stock_item_name">Stock Item Name</th>
     <th headers="rental_date">Rental Date</th>
     <th headers="return_due_date">Return Due Date</th>
-  <!--  <th headers="return_code">Return Code</th> -->
     <th headers="theatre">Theatre Rental</th>
     <th headers="return_button">Return Item?</th>
 </tr>
@@ -24,9 +23,9 @@
   <td><%= rental[8] %></td>
   <td><%= rental[2] %></td>
   <td><%= rental[9] %></td>
+<!-- wishlist: format these dates better -->
   <td><%= rental[3] %></td>
   <td><%= rental[4] %></td>
-<!--  <td><%= rental[5] %></td> -->
   <td><%= p (rental[7]=='t') ? 'Yes' : 'No' %></td>
   <td><form method="post" action="/crms/rentals/return">
     <input type="hidden" name="rental_id" value ="<%=rental[0]%>" />
