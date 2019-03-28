@@ -15,6 +15,10 @@ attr_reader :id, :name
     @warnings = options['warnings'].to_i
   end
 
+  def set_name(new_name)
+    @name=new_name
+  end
+
   def get_contact_info
     return [@phone, @email, @address]
   end
@@ -58,7 +62,11 @@ attr_reader :id, :name
   end
 
   def set_address(new_address)
-      @address = new_address
+      @address = new_address.to_s
+  end
+
+  def set_account_balance(amount)
+    @account_balance = amount
   end
 
   def add_to_account_balance(amount)

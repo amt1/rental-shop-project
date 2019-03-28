@@ -37,8 +37,27 @@ get '/crms/customers/list_all_customers' do
 end
 
 post '/crms/customers/customer_details' do
-  @my_customer=params[:customer]
+  @my_customer=Customer.find_by_id(params[:customer_id])
   erb(:customer_details)
+end
+
+post '/crms/customers/update_customer' do
+  @update_id = params[:id]
+  @update_customer=Customer.find_by_id(@update_id)
+  @update_customer.set_name(params[:name])
+  @update_customer.set_phone(params[:phone])
+  @update_customer.set_email(params[:email])
+  @update_customer.set_address(params[:address])
+  @update_customer.set_account_balance(params[:account_balance])
+  @update_customer.set_warnings(params[:warnings])
+  @update_customer.update
+  redirect '/crms/customers/list_all_customers'
+end
+
+post '/crms/customers/customer_delete' do
+  @my_customer=Customer.find_by_id(params[:customer_id])
+  @my_customer.delete
+  redirect '/crms/customers/list_all_customers'
 end
 
 get '/crms/rentals' do
@@ -59,7 +78,7 @@ post '/crms/customers/process_new' do
     'warnings' => params[:warnings]
   }
   Customer.new(@my_customer).save
-  redirect '/crms/customers'
+  redirect '/crms/customers/list_all_customers'
 end
 
 post '/crms/rentals/return' do

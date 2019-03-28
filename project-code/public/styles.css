@@ -113,7 +113,7 @@ nav ul {
   right: 20px; */
 }
 
-nav li, input.blackbutton {
+nav li, input.blackbutton, input.darkredbutton {
   display: inline;
   color: antiquewhite;
   background-color:  black;
@@ -247,20 +247,25 @@ div.bottom {
   text-align: center;
   margin-top: 1em;
   margin-bottom: 1em;
-
 /*  font-family: 'SignPainter', cursive, sans-serif; */
-
 }
+
+h3 {
+    font-size: 1.5em;
+    font-family: Tahoma, verdana, sans-serif;
+}
+
 /* Forms */
 
-form {
-  font-size: 1.2em;
+form input, textarea {
+  font-size: 1em;
   line-height: 1.5em;
   color: black;
+  padding: 1em;
 }
 label {
   margin-top: 0.5em;
-  padding-top: 0.5em;
+  padding-top: 1em;
 }
 div.formcontainer {
   width: 80%;
@@ -271,10 +276,13 @@ div.formcontainer {
 form input {
   background: white;
   color: black;
+  line-height: 1.2em;
 }
 input.textfield {
   background: white;
   color: black;
+  line-height: 1.5em;
+  padding: 0.2em;
 }
 
 input.greybutton {
@@ -287,6 +295,12 @@ input.greybutton {
   margin: 10px;
   font-size: 1em;
 }
+
+input.darkredbutton {
+  color: antiquewhite;
+  background-color: darkred;
+}
+
 input.smallwhitebutton {
   display: inline;
   color: black;
@@ -306,9 +320,10 @@ input.smallwhitebutton {
 
 fieldset {
   margin-top: 2em;
-  padding: 2em;
+  padding: 1em;
   display: inline-block;
   width: 80%;
+  font-size: 1em;
 }
 select {
   padding: 10px;
@@ -325,6 +340,9 @@ legend {
 }
 /* tables */
 
+table .blackbutton, table .darkredbutton {
+  font-size: 0.8em;
+}
 table.data {
   margin: 3em;
 /*  border: 3px double black; */

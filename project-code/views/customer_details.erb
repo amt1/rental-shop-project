@@ -1,42 +1,53 @@
 <h2>Customer Details</h2>
-<% @customer=Customer.new(@my_customer) %>
 <div class=formcontainer">
   <div class="floatright half">
 
   <form method="post" id="edit-customer-form" action="/crms/customers/update_customer" />
+  <h3>Customer Name: <%=@my_customer.name%></h3>
     <fieldset>
       <legend>Contact Details: </legend>
-      <label for="name"><strong>Customer Name: <%=@customer.name%></strong></label>
-      <input type="text" name="name" id="name" value="<%=@customer.name%>" placeholder="<%=@customer.name%>" />
+      <label for="name">Name: </label>
+      <input type="text" class="textfield" name="name" id="name" value="<%=@my_customer.name%>" placeholder="<%=@my_customer.name%>" />
       <table><tr><td>
       <label for="phone">Phone: </label>
       </td><td>
-      <input type="text" name="phone" id="phone" maxlength="15" />
+      <input type="text" name="phone" id="phone" value="<%=@my_customer.get_phone%>" maxlength="15" />
       </td></tr>
       <tr><td><label for="email">Email: </label></td>
         <td>
-      <input type="email" name="email" id="email" />
+      <input type="email" name="email" id="email" value="<%=@my_customer.get_email%>" />
       </td></tr></table>
       <label for="address">Address: </label>
       <br class="clear" />
-      <textarea name="address" id="address" form="new-customer-form" rows="6" cols="50"></textarea>
+      <textarea name="address" id="address" form="new-customer-form" rows="6" cols="50" value="<%=@my_customer.get_address.to_s%>">
+<%=@my_customer.get_address.to_s%>
+      </textarea>
+      <br />
+      <label for="account_balance">Account Balance: </label><br />
+    <input type="text" cols="50" name="account_balance" value="<%=@my_customer.get_account_balance%>" />
+    <br />
+    <label for="warnings">Any warnings? </label><br />
+    <% check_warnings=@my_customer.get_warnings %>
+    <select class="dropdown" id="warnings" name="warnings" >
+      <option value="0"<% p "selected" if check_warnings==0 %>>All OK</option>
+      <option value="1"<% p "selected" if check_warnings==1 %>>Returned items late or damaged</option>
+      <option value="2"<% p "selected" if check_warnings==2 %>>Banned after previous loss</option>
+      </select>
     </fieldset>
+    <div>
+      <div class="floatright right">
+        <input type="hidden" name="id" value="<%=@my_customer.id%>" />
 
-    <input type="hidden" name="account_balance" value=0 />
-    <input type="hidden" name="warnings" value=0 />
-    <table><tr>
-    <td class="left">
-      <form method="post" action="/crms/customers/delete_customer" >
-        <input type="hidden" value="<%=@customer%>" />
-      <input type="submit" class="greybutton" value="Delete Customer" />
-    </form>
-    </td>
-    <td class="right">
-      <form method="post" action="/crms/customers/update_customer" >
-        <input type="hidden" value="<%=@customer%>" />
-      <input type="submit" class="greybutton" value="Update Customer" />
+     <input type="submit" class="darkredbutton floatright" value="Update" />
       </form>
-    </td></tr></table>
+      </div>
+      <div class="left">
+        <form method="post" action="/crms/customers/delete_customer" >
+          <input type="hidden" name="id" value="<%=@my_customer.id%>" />
+        <input type="submit" class="darkredbutton" value="Delete" />
+      </form>
+      </div>
+      </div>
   </div> <!-- end right half div -->
     <div class="floatleft half center">
       <img src="/photos/captain-picard.jpg" alt="Customer photo" style="width: 400px; height: 500px;" />
