@@ -29,8 +29,8 @@ end
 def update
   sql = 'UPDATE rentals
   SET (customer_id, stock_item_id, rental_date, return_due_date, return_code, transaction_id, theatre)
-  = ($1, $2, $3, $4, $5, $6, $7);'
-  values = [@customer_id, @stock_item_id, @rental_date, @return_due_date, @return_code, @transaction_id, @theatre]
+  = ($1, $2, $3, $4, $5, $6, $7) WHERE id = $8;'
+  values = [@customer_id, @stock_item_id, @rental_date, @return_due_date, @return_code, @transaction_id, @theatre, @id]
   SqlRunner.run(sql, values)
 end
 

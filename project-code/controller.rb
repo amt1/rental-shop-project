@@ -49,8 +49,10 @@ post '/crms/rentals/process_return' do
   @stock_item_id = params[:stock_item_id]
   @return_code=params[:return_code]
   @item_status=params[:item_status]
+  @rental_id=params[:rental_id]
   @my_stock_item = StockItem.find_by_id(@stock_item_id)
   @current_rental = Rental.find_by_id(@rental_id)
+#  binding.pry
   @current_rental.return_rental(@return_code, @my_stock_item, @item_status)
   @msg="You returned "+" #{@my_stock_item.name}"
   redirect '/crms/rentals'
