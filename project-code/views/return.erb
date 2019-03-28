@@ -1,0 +1,38 @@
+<h2>Return Rented Items</h2>
+<h3>You are returning <%=@item_name%>, due on <%=@due_date%>. How is it?</h3>
+<div class=formcontainer">
+<div class="floatright half">
+
+<form id="returns-form" method="post" action="/crms/rentals/process_return">
+  <fieldset class="radios">
+    <legend>Item Condition:</legend>
+    <input type="radio" name="item_status" value="1" selected>All ok.</input>
+    <input type="radio" name="item_status" value="5">Send for Cleaning.</input>
+    <input type="radio" name="item_status" value="6">Needs Repair.</input>
+</fieldset>
+<fieldset class="dropdown">
+    <legend>Return Status:</legend>
+    <% sql='SELECT id, meaning FROM rental_return_codes;'%>
+    <% return_codes_array=SqlRunner.run(sql).map(&:values).drop(1) %>
+    <select class="dropdown" id="return-codes" name="return_code">
+      <% return_codes_array.each do |row| %>
+      <option value="<%=row[0]%>"<% p "selected" if row[0]=='1'%>><%=row[1]%></option>
+  <% end %>
+
+      </select>
+      <input type="hidden" name="rental_id" value="<%=@rental_id%>" />
+      <input type="hidden" name="stock_item_id" value="<%=@stock_item_id%>" />
+  </<fieldset>
+    <div class="center">
+    <input type="submit" class="greybutton" value="Return Items" />
+    </div>
+</form>
+</div>
+<div class="floatleft half center">
+  <table><tr><td>
+  <img class="mainimage-left" src="/photos/tardis-welcome-650.jpg" alt="Tardis photo" />
+  </td></tr><tr><td>
+  <div class="clearleft caption"><em>Did everything get back ok?</em></div>
+  </td></tr></table>
+</div>
+</div>

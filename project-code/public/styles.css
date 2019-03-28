@@ -91,6 +91,15 @@ input.greybutton {
   border-radius: 10px;
   margin: 10px;
 }
+input.smallwhitebutton {
+  display: inline;
+  color: black;
+  background-color: white;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 10px;
+}
 nav li a, input {
   font-family: Tahoma, verdana, sans-serif;
   text-decoration: none;
@@ -149,11 +158,14 @@ color: black;
 
 .main {
   width: 100%;
+  margin: auto;
   justify-content: center;
+}
+div.formcontainer {
+  width: 80%;
   margin: auto;
 }
-
-table#all-current-rentals {
+table.data {
   margin: 3em;
 /*  border: 3px double black; */
   padding: 1em;
@@ -166,4 +178,72 @@ th, td {
 
 th {
   font-size: 1.1em;
+}
+#returnsform {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+fieldset {
+  margin-top: 2em;
+  padding: 2em;
+  display: inline-block;
+  width: 80%;
+}
+select {
+  padding: 10px;
+  margin: 1em 0 1em 0;
+  line-height: 1.5em;
+  font-size: 1.2em;
+  font-family: Tahoma, verdana, sans-serif;
+}
+
+legend {
+  font-size: 1.5em;
+  font-family: Tahoma, verdana, sans-serif;
+  margin-top: 2em;
+}
+.floatright {
+  float: right;
+}
+.floatleft {
+  float: left;
+}
+.clear {
+  clear: both;
+}
+.clearleft {
+  clear: left;
+}
+.clearright {
+  clear: right;
+}
+.center {
+  text-align: center;
+}
+.half {
+  width: 40%;
+  margin: 0 3em 0 3em;
+  clear: none;
+  display: flex;
+  justify-content: center;
+}
+
+.half img {
+  width: 100%;
+}
+footer.flex-container {
+  display: flex;
+  height: 500px;
+  align-items: stretch;
+}
+.caption {
+  clear: both;
+  text-align: left;
+  font-weight: lighter;
+  font-style: italic;
+  font-size: 1.5em;
+  display: block;
+  width: 100%;
 }

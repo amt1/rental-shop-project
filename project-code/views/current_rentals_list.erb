@@ -1,8 +1,7 @@
 <h2>Current Rentals List</h2>
 
-
 <% rentals_array = Rental.list_current_rentals_with_names %>
-<table id="all-current-rentals" cellspacing="5" cellpadding="5">
+<table class="data" id="all-current-rentals" cellspacing="5" cellpadding="5">
   <tr>
     <th headers="id">Rental ID</th>
     <th headers="transaction_id">Transaction ID</th>
@@ -12,8 +11,9 @@
     <th headers="stock_item_name">Stock Item Name</th>
     <th headers="rental_date">Rental Date</th>
     <th headers="return_due_date">Return Due Date</th>
-    <th headers="return_code">Return Code</th>
+  <!--  <th headers="return_code">Return Code</th> -->
     <th headers="theatre">Theatre Rental</th>
+    <th headers="return_button">Return Item?</th>
 </tr>
 <% rows = rentals_array.count - 1 %>
 <% rentals_array.each do |rental| %>
@@ -26,8 +26,15 @@
   <td><%= rental[9] %></td>
   <td><%= rental[3] %></td>
   <td><%= rental[4] %></td>
-  <td><%= rental[5] %></td>
+<!--  <td><%= rental[5] %></td> -->
   <td><%= p (rental[7]=='t') ? 'Yes' : 'No' %></td>
+  <td><form method="post" action="/crms/rentals/return">
+    <input type="hidden" name="rental_id" value ="<%=rental[0]%>" />
+    <input type="hidden" name="stock_item_id" value ="<%=rental[2]%>" />
+    <input type="hidden" name="stock_item_name" value ="<%=rental[9]%>" />
+    <input type="hidden" name="return_due_date" value ="<%=rental[4]%>" />
+    <input type="submit" class="smallwhitebutton" value="Return Item" />
+</form></td>
 </tr>
 <% end %>
 </table>
