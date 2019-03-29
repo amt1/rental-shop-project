@@ -1,5 +1,4 @@
 <h2>Complete Stock List</h2>
-<% stock_items_array = StockItem.list_all_with_sizes_and_status %>
 <% stock_items_array = StockItem.list_all_with_sizes_status_and_themes %>
 
 <table class="data" id="all-stock" cellspacing="5" cellpadding="5">
@@ -44,7 +43,7 @@
 <td><%=stock_item[10]%></td> <!-- status meaning -->
     <td><%=sprintf("£%2.2f", stock_item[7])%></td> <!-- price -->
 
-    <td><form method="post" action="/crms/stock_item/stock_item_details">
+    <td><form method="post" action="/crms/stock_items/stock_item_details">
       <input type="hidden" name="id" value ="<%=stock_item[0]%>" />
       <input type="submit" class="smallwhitebutton" value="Edit / Delete" />
     </form></td>

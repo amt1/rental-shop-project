@@ -1,0 +1,94 @@
+<h2>Look Up Stock: Details View</h2>
+
+<div class=formcontainer">
+  <div class="floatright half">
+  <form method="post" id="edit-stock-form" action="/crms/stock_items/update_stock_item" />
+    <fieldset>
+      <legend>Edit Details?</legend>
+      <br class="clear" />
+
+      <label for="name">Costume Name</label>
+      <input type="text" id="name" name="name" value="<%=@my_stock_item.name%>" size="50">
+
+      <br class="clear" />
+
+      <label for="size">Choose size</label>
+      <% sql='SELECT * FROM sizes;'%>
+      <% sizes_array=SqlRunner.run(sql).map(&:values) %>
+      <select class="" id="size" name="size">
+        <% sizes_array.each do |get_size| %>
+        <option value="<%=get_size[0]%>"><%=get_size[1]%>: <%=get_size[2]%>
+          <%= p 'selected' if get_size[0] == @my_stock_item.size%></option>
+        <% end %>
+      </select>
+      <br class="clear" />
+
+      <label for="measurements">Measurements: </label>
+      <br class="clear" />
+      <textarea name="measurements" id="measurements" form="edit-stock-form" rows="6" cols="50" value="<%=@my_stock_item.get_measurements%>">
+      </textarea>
+      <br class="clear" />
+      <label for="cleaning_instructions">Cleaning Instructions</label>
+      <input type="text" id="cleaning_instructions" value="<%=@my_stock_item.get_cleaning_instructions%>" name="cleaning_instructions">
+
+      <label for="status">Current Status</label>
+
+<% sql='SELECT id, meaning FROM item_status_codes;'%>
+<% status_codes_array=SqlRunner.run(sql).map(&:values) %>
+<select class="dropdown" id="status-codes" name="status">
+  <% status_codes_array.each do |row| %>
+  <option value="<%=row[0]%>"<% p "selected" if row[0]==@my_stock_item.status%>><%=row[1]%></option>
+<% end %>
+  </select>
+
+<br class="clear" />
+<br class="clear" />
+
+<label for="colour">Choose main colour</label>
+<input type = "radio" name="colour" value="Red" <% p "selected" if @my_stock_item.colour == 'Red'%> >Red
+<input type = "radio" name="colour" value="Blue"<% p "selected" if @my_stock_item.colour == 'Blue'%>>Blue
+<input type = "radio" name="colour" value="Orange" <% p "selected" if @my_stock_item.colour == 'Orange'%>>Orange
+<input type = "radio" name="colour" value="Yellow" <% p "selected" if @my_stock_item.colour == 'Yellow'%>>Yellow
+<input type = "radio" name="colour" value="Green" <% p "selected" if @my_stock_item.colour == 'Green'%>>Green
+<input type = "radio" name="colour" value="Brown" <% p "selected" if @my_stock_item.colour == 'Brown'%>>Brown
+<input type = "radio" name="colour" value="Black" <% p "selected" if @my_stock_item.colour == 'Black'%>>Black
+<input type = "radio" name="colour" value="White" <% p "selected" if @my_stock_item.colour == 'White'%>>White
+<br class="clear" />
+<br class="clear" />
+<% themes_array=Theme.list_for_dropdown %>
+<label for="theme_code">Choose Theme:</label>
+<select class="" id="theme-code" name="theme_code">
+  <% themes_array.each do |theme| %>
+  <option value="<%=theme.id%>" ><%=theme.theme_type%>: <%=theme.theme%></option>
+  <% end %>
+  <br class="clear" />
+  <br class="clear" />
+
+</select>
+<label for="price">Price</label>
+<input type="number" name="price" id = "price" value="<%=@my_stock_item.price%>">
+</fieldset>
+      <div>
+        <div class="floatright right">
+
+          <input type="hidden" name="id" value="<%=@my_stock_item.id%>" />
+
+       <input type="submit" class="darkredbutton floatright" value="Update" />
+        </form>
+        </div>
+        <div class="left">
+          <form method="post" action="/crms/stock_items/delete_stock_item" >
+
+            <input type="hidden" name="id" value="<%=@my_stock_item.id%>" />
+          <input type="submit" class="darkredbutton" value="Delete" />
+        </form>
+        </div>
+        </div>
+
+
+  </div> <!-- end half -->
+  <div class="floatleft half center">
+    <br />
+    <img src="/photos/panto.jpg" alt="Panto photo" style="width: 400px; height: 500px;" />
+  </div> <!-- end left half div -->
+  </div  <!-- end formcontainer -->

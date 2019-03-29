@@ -147,3 +147,30 @@ end
 get '/crms/stock_items/costume_search' do
   erb(:costume_search)
 end
+
+post '/crms/stock_items/delete_stock_item' do
+  @delete_id = params[:id]
+  @my_stock_item=StockItem.find_by_id(@delete_id)
+  @my_stock_item.delete
+  redirect '/crms/stock_items/list_all_stock'
+end
+
+post '/crms/stock_items/stock_item_details' do
+  @my_stock_item=StockItem.find_by_id(params[:id])
+  erb(:stock_item_details)
+end
+
+post '/crms/stock_items/update_stock_item' do
+  @update_id = params[:id]
+  @update_stock_item=StockItem.find_by_id(@update_id)
+  @update_stock_item.set_name(params[:name])
+  @update_stock_item.set_size_code(params[:size])
+  @update_stock_item.set_measurements(params[:measurements])
+  @update_stock_item.set_cleaning_instructions(params[:cleaning_instructions])
+  @update_stock_item.set_status_code(params[:status])
+  @update_stock_item.set_colour(params[:colour])
+  @update_stock_item.set_price(params[:price])
+  @update_stock_item.set_themes([params[:theme_code]])
+  @update_stock_item.update
+  redirect '/crms/stock_items/list_all_stock'
+end

@@ -237,11 +237,9 @@ attr_reader :id, :name, :size, :status, :colour, :price
     return @themes
   end
 
-# probably no longer applies
-  # def set_themes_array(new_themes_array)
-  #   @themes = new_themes_array
-  # end
-
+# def set_theme_code(new_theme_code)
+#   @theme_code = new_theme_code
+# end
 # end getters and setters
 
 
