@@ -145,7 +145,7 @@ def self.list_item_rentals_with_names(stock_item_id)
   JOIN stock_items on rentals.stock_item_id = stock_items.id
   WHERE rentals.stock_item_id = $1
   ORDER BY return_due_date;'
-  values=[customer_id]
+  values=[stock_item_id]
   sql_rentals_hash=SqlRunner.run(sql,values)
   return sql_rentals_hash.map(&:values)
 end

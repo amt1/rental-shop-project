@@ -180,6 +180,18 @@ text-align:center;
   font-size: 0.5em;
 }
 
+.stock-menu-hero {
+  text-align:center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: -5%;
+  margin-right: -5%;
+/*  background-image: url("./photos/playing-cards.jpg"); */
+background-image: url("./photos/high-school-musical.jpg");
+  background-size: cover;
+  height: 550px;
+}
+
 .main {
   width: 90%;
   height: 100%;
@@ -239,11 +251,12 @@ div.bottom {
 }
 
 .main h2 {
-  font-size: 2.5em;
-  color: darkred;
+  font-size: 3.5em;
+/*  color: darkred; */
+color: black;
   font-weight: lighter;
   font-family: Tahoma, sans-serif;
-  text-shadow: 1px 1px 5px black;
+  /* text-shadow: 1px 1px 5px black; */
   text-align: center;
   margin-top: 1em;
   margin-bottom: 1em;
@@ -300,7 +313,37 @@ input.darkredbutton {
   color: antiquewhite;
   background-color: darkred;
 }
+ul.menu {
+  margin-bottom: 2em;
+  /* list-style-position: outside;
+  list-style-image: url(./graphics/gold-star-50.jpg); */
 
+}
+ .menu a:link,  .menu a:visited,  .menu a:hover,  .menu a:active {
+   text-decoration: none;
+   color: black;
+ }
+ ul.menu li {
+   color: black;
+   background-color: white;
+   padding: 1.5em;
+   font-size: 1em;
+   display: inline-block;
+ }
+ /* nice buttons but trying something else */
+ ul.menu li {
+   color: black;
+   background-color: white;
+/*   padding: 1.5em; */
+   font-size: 1em;
+   display: inline-block;
+   border: 2px solid darkred;
+   padding: 20px 30px 20px 30px;
+/*   border-radius: 10px; */
+   margin: 2em 1.5em 0 2em;
+   box-shadow: 10px 10px 8px black;
+ }
+ */
 input.smallwhitebutton {
   display: inline;
   color: black;

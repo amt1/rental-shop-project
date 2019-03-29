@@ -1,8 +1,5 @@
 <h2>Complete Stock List</h2>
 <% stock_items_array = StockItem.list_all_with_sizes_and_status %>
-
-<% stock_items_array = StockItem.list_all_with_sizes_and_status_pick_theme(5) %>
-
 <table class="data" id="all-stock" cellspacing="5" cellpadding="5">
   <tr>
     <th headers="id">Stock ID</th>
@@ -47,15 +44,15 @@
 
     <td><form method="post" action="/crms/stock_item/stock_item_details">
       <input type="hidden" name="id" value ="<%=stock_item[0]%>" />
-      <input type="submit" class="darkredbutton" value="Edit / Delete" />
+      <input type="submit" class="smallwhitebutton" value="Edit / Delete" />
     </form></td>
   <td><form method="post" action="/crms/stock_items/costume_rental_history">
     <input type="hidden" name="id" value ="<%=stock_item[0]%>" />
-    <input type="submit" class="darkredbutton" value="View Rentals" />
+    <input type="submit" class="smallwhitebutton" value="View Rentals" />
 </form></td>
 <td><form method="post" action="/crms/stock_items/rent">
   <input type="hidden" name="id" value ="<%=stock_item[0]%>" />
-  <input type="submit" class="darkredbutton" value="Rent" />
+  <input type="submit" class="smallwhitebutton" value="Rent" />
 </form></td>
 </tr>
 <% end %> <!-- end each -->

@@ -112,8 +112,14 @@ get '/crms/rentals/current_rentals_list' do
 end
 
 post '/crms/stock_items/costume_rental_history' do
-  @stock_item_id = params[:stock_item_id]
+  @stock_item_id = params[:id]
+  # binding.pry
   erb(:costume_rental_history)
+end
+post '/crms/stock_items/list_by_theme' do
+  @theme_code = params[:theme_code]
+  # binding.pry
+  erb(:list_by_theme)
 end
 
 get '/crms/stock_items/list_all_stock' do
@@ -122,10 +128,4 @@ end
 
 get '/crms/stock_items/costume_search' do
   erb(:costume_search)
-end
-
-post '/crms/stock_items/list_by_theme' do
-  @theme_code = params[:theme_code]
-  # binding.pry
-  erb(:list_by_theme)
 end
