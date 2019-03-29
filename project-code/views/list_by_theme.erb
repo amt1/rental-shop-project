@@ -1,7 +1,6 @@
-<h2>Complete Stock List</h2>
-<% stock_items_array = StockItem.list_all_with_sizes_and_status %>
-
-<% stock_items_array = StockItem.list_all_with_sizes_and_status_pick_theme(5) %>
+<% @theme_code=@theme_code.to_i %>
+<% stock_items_array = StockItem.list_all_with_sizes_and_status_pick_theme(@theme_code) %>
+<h2>Find Costumes with a <%=stock_items_array[0][12]%> Theme:</h2>
 
 <table class="data" id="all-stock" cellspacing="5" cellpadding="5">
   <tr>
@@ -37,7 +36,6 @@
 <td><%=stock_item[9]%></td> <!-- standard size desc -->
 <!--    <td><%stock_item[3]%></td> --><!-- measurements -->
 
-<!-- <td><%stock_item[11]%></td> --><!-- theme code -->
 <td><%=stock_item[11]%></td> <!-- theme type -->
 <td><%=stock_item[12]%></td> <!-- theme -->
 <!--    <td><%stock_item[4]%></td> --><!-- cleaning instructions -->

@@ -1,0 +1,17 @@
+<h2>Costume Search</h2>
+<% themes_array=Theme.list_for_dropdown %>
+<form method="post" action="/crms/stock_items/list_by_theme" />
+<fieldset>
+<legend>Search by Theme:</legend>
+
+<label for="theme_code">Themes:</label>
+<select class="" id="theme-code" name="theme_code">
+  <% themes_array.each do |theme| %>
+  <option value="<%=theme.id%>"><%=theme.theme_type%>: <%=theme.theme%></option>
+  <% end %>
+</select>
+
+<input type="submit" class="darkredbutton" value="Search!" />
+</<fieldset>
+
+</form>

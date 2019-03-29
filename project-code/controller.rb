@@ -5,6 +5,8 @@ require( 'date')
 require_relative( './models/rental.rb')
 require_relative( './models/customer.rb')
 require_relative( './models/stock_item.rb')
+require_relative( './models/theme.rb')
+
 also_reload('./models/*')
 # home page is at http://localhost:4567/crms
 
@@ -116,4 +118,14 @@ end
 
 get '/crms/stock_items/list_all_stock' do
   erb(:list_all_stock)
+end
+
+get '/crms/stock_items/costume_search' do
+  erb(:costume_search)
+end
+
+post '/crms/stock_items/list_by_theme' do
+  @theme_code = params[:theme_code]
+  # binding.pry
+  erb(:list_by_theme)
 end

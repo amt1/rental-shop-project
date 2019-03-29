@@ -67,6 +67,15 @@ class TestStockItem < MiniTest::Test
     assert_equal(@redshirt.name, StockItem.find_by_id(@redshirt.id).name)
   end
 
+def test_whopping_list
+stock_items_array = StockItem.list_all_with_sizes_and_status
+# p stock_items_array[8]
+end
+
+def test_themes_list
+  list = StockItem.list_all_with_sizes_and_status_pick_theme(5)
+p list
+end
   # def test_stock_delete_all
   #   StockItem.delete_all
   #   assert_nil(StockItem.find_by_id(1))
@@ -84,35 +93,35 @@ class TestStockItem < MiniTest::Test
   #   assert_nil(StockItem.find_by_id(@redshirt.id))
   # end
 
-  def test_update_stock_item
-    @redshirt.save
-    assert_equal('Red', StockItem.find_by_id(@redshirt.id).colour)
-    @redshirt.set_colour('Black')
-    @redshirt.update
-    assert_equal('Black', StockItem.find_by_id(@redshirt.id).colour)
-    @redshirt.set_name('Ensign Blackshirt')
-    @redshirt.update
-    assert_equal('Ensign Blackshirt', StockItem.find_by_id(@redshirt.id).name)
-    @redshirt.set_size_code('3')
-    @redshirt.update
-    assert_equal('1', StockItem.find_by_id(@redshirt.id).size)
-    @redshirt.set_status_code('2')
-    @redshirt.update
-    assert_equal(2, StockItem.find_by_id(@redshirt.id).get_status_code)
-    assert_equal('Booked, unavailable', StockItem.find_by_id(@redshirt.id).get_status_msg)
-    # p @redshirt.get_status_msg
-    @redshirt.set_cleaning_instructions('Nuke it from Orbit')
-    @redshirt.update
-    assert_equal('Nuke it from Orbit', StockItem.find_by_id(@redshirt.id).get_cleaning_instructions)
-    @redshirt.set_measurements('Massive, just massive')
-    @redshirt.update
-    assert_equal('Massive, just massive', StockItem.find_by_id(@redshirt.id).get_measurements)
-    @redshirt.set_price(3)
-    @redshirt.update
-    assert_equal('3', StockItem.find_by_id(@redshirt.id).price)
-
-  # binding.pry
-  end
+  # def test_update_stock_item
+  #   @redshirt.save
+  #   assert_equal('Red', StockItem.find_by_id(@redshirt.id).colour)
+  #   @redshirt.set_colour('Black')
+  #   @redshirt.update
+  #   assert_equal('Black', StockItem.find_by_id(@redshirt.id).colour)
+  #   @redshirt.set_name('Ensign Blackshirt')
+  #   @redshirt.update
+  #   assert_equal('Ensign Blackshirt', StockItem.find_by_id(@redshirt.id).name)
+  #   @redshirt.set_size_code('3')
+  #   @redshirt.update
+  #   assert_equal('1', StockItem.find_by_id(@redshirt.id).size)
+  #   @redshirt.set_status_code('2')
+  #   @redshirt.update
+  #   assert_equal(2, StockItem.find_by_id(@redshirt.id).get_status_code)
+  #   assert_equal('Booked, unavailable', StockItem.find_by_id(@redshirt.id).get_status_msg)
+  #   # p @redshirt.get_status_msg
+  #   @redshirt.set_cleaning_instructions('Nuke it from Orbit')
+  #   @redshirt.update
+  #   assert_equal('Nuke it from Orbit', StockItem.find_by_id(@redshirt.id).get_cleaning_instructions)
+  #   @redshirt.set_measurements('Massive, just massive')
+  #   @redshirt.update
+  #   assert_equal('Massive, just massive', StockItem.find_by_id(@redshirt.id).get_measurements)
+  #   @redshirt.set_price(3)
+  #   @redshirt.update
+  #   assert_equal('3', StockItem.find_by_id(@redshirt.id).price)
+  #
+  # # binding.pry
+  # end
 
   # def test_get_item_themes
   #   test_item=StockItem.find_by_id(1)

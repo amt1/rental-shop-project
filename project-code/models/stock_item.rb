@@ -118,8 +118,8 @@ attr_reader :id, :name, :size, :status, :colour, :price
     sql='SELECT stock_items.*, sizing, standard_size, meaning, theme_type, theme FROM sizes
     JOIN stock_items ON sizes.id = stock_items.size
     JOIN item_status_codes ON stock_items.status = item_status_codes.id
-    JOIN item_themes ON stock_items.id = item_id
-    JOIN theme_codes ON item_themes.theme_code = theme_codes.id
+    RIGHT JOIN item_themes ON stock_items.id = item_id
+    LEFT JOIN theme_codes ON item_themes.theme_code = theme_codes.id
     WHERE theme_code = $1
     ORDER BY stock_items.name, size;'
     values = [theme_code]
