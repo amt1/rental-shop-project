@@ -121,6 +121,23 @@ post '/crms/stock_items/list_by_theme' do
   # binding.pry
   erb(:list_by_theme)
 end
+get '/crms/stock_items/stock_new' do
+  erb(:stock_new)
+end
+
+post '/crms/stock_items/process_new_stock' do
+  @my_new_stock={
+    'name' => params[:name],
+    'size' => params[:size],
+    'measurements' => params[:measurements],
+    'cleaning_instructions' => params[:cleaning_instructions],
+    'status' => params[:status],
+    'colour' => params[:colour],
+    'price' => params[:price]
+  }
+  StockItem.new(@my_new_stock).save
+  redirect '/crms/stock_items/list_all_stock'
+end
 
 get '/crms/stock_items/list_all_stock' do
   erb(:list_all_stock)

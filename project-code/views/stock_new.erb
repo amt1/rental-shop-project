@@ -1,0 +1,63 @@
+<h2>Add New Stock</h2>
+
+<div class=formcontainer">
+  <div class="floatright half">
+  <form method="post" id="new-stock-form" action="/crms/stock_items/process_new_stock" />
+    <fieldset>
+      <legend>Enter Details:</legend>
+      <br class="clear" />
+
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" size="50">
+
+      <br class="clear" />
+
+      <label for="size">Choose size</label>
+      <% sql='SELECT * FROM sizes;'%>
+      <% sizes_array=SqlRunner.run(sql).map(&:values) %>
+      <select class="" id="size" name="size">
+        <% sizes_array.each do |get_size| %>
+        <option value="<%=get_size[0]%>"><%=get_size[1]%>: <%=get_size[2]%></option>
+        <% end %>
+      </select>
+      <br class="clear" />
+
+      <label for="measurements">Measurements: </label>
+      <br class="clear" />
+      <textarea name="measurements" id="measurements" form="new_stock-form" rows="6" cols="50" value="">
+      </textarea>
+      <br class="clear" />
+      <label for="cleaning_instructions">Cleaning Instructions</label>
+      <input type="text" id="cleaning_instructions" name="cleaning_instructions">
+<input type="hidden" name="status" value=1 />
+<br class="clear" />
+<br class="clear" />
+
+<label for="colour">Choose main colour</label>
+<input type = "radio" name="colour" value="Red">Red
+<input type = "radio" name="colour" value="Blue">Blue
+<input type = "radio" name="colour" value="Orange">Orange
+<input type = "radio" name="colour" value="Yellow">Yellow
+<input type = "radio" name="colour" value="Green">Green
+<input type = "radio" name="colour" value="Brown">Brown
+<input type = "radio" name="colour" value="Black">Black
+<input type = "radio" name="colour" value="White">White
+<br class="clear" />
+<br class="clear" />
+
+<label for="price">Price</label>
+<input type="number" name="price" id = "price">
+<div class="right">
+  <input type="submit" class="darkredbutton" value="Add" />
+  </div>
+      </fieldset>
+      <br class="clear" />
+
+  </form>
+
+  </div> <!-- end half -->
+  <div class="floatleft half center">
+    <br />
+    <img src="/photos/boys-comic-con.jpg" alt="New stock photo" style="width: 400px; height: 500px;" />
+  </div> <!-- end left half div -->
+  </div  <!-- end formcontainer -->
