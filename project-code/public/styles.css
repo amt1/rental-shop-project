@@ -98,9 +98,9 @@ background-color: mediumpurple;
 nav {
   float: left;
   clear: none;
-  height: 80px;
+  height: 70px;
   margin-bottom: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   border-bottom: 3px solid black;
   width: 100%;
 }
@@ -108,6 +108,7 @@ nav {
 nav ul {
   list-style-type: "none";
   display: inline-block;
+  margin-top: 0;
 /*  position: absolute;
   top: 20px;
   right: 20px; */
@@ -118,9 +119,10 @@ nav li, input.blackbutton, input.darkredbutton {
   color: antiquewhite;
   background-color:  black;
   border: 2px solid antiquewhite;
-  padding: 10px 20px 10px 20px;
+  padding: 7px 20px 12px 20px;
   border-radius: 10px;
-  margin: 0 10px 0 10px;
+  margin: 0 15px 0px 15px;
+  font-size: 2em;
 }
 
 nav li a:link, nav li a:visited, nav li a:hover, nav li a:active, nav input, input.blackbutton {
@@ -271,7 +273,7 @@ h3 {
 /* Forms */
 
 form input, textarea {
-  font-size: 1em;
+  font-size: 1.5em;
   line-height: 1.5em;
   color: black;
   padding: 1em;
@@ -343,16 +345,16 @@ ul.menu {
    margin: 2em 1.5em 0 2em;
    box-shadow: 10px 10px 8px black;
  }
- */
+
 input.smallwhitebutton {
   display: inline;
   color: black;
   background-color: white;
-  padding: 5px;
+  padding: 0.8em;
   border: 1px solid black;
   border-radius: 10px;
   margin: 10px;
-  font-size: 0.8em;
+  font-size: 1em;
 }
 /*
 #returnsform {

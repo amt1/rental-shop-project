@@ -133,7 +133,8 @@ post '/crms/stock_items/process_new_stock' do
     'cleaning_instructions' => params[:cleaning_instructions],
     'status' => params[:status],
     'colour' => params[:colour],
-    'price' => params[:price]
+    'price' => params[:price],
+    'theme_code' => params[:theme_code]
   }
   StockItem.new(@my_new_stock).save
   redirect '/crms/stock_items/list_all_stock'

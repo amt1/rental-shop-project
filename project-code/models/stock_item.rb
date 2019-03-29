@@ -17,6 +17,7 @@ attr_reader :id, :name, :size, :status, :colour, :price
     @colour = options['colour']
     @price = options['price']
     # p @themes
+    @theme_code = options['theme_code']
   end
 
 ## start database CRUD functions
@@ -26,7 +27,11 @@ attr_reader :id, :name, :size, :status, :colour, :price
     VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id;'
     values = [@name, @size, @measurements, @cleaning_instructions, @status, @colour, @price]
     @id = SqlRunner.run(sql, values).first['id'].to_i
-
+    if @theme_code != nil
+      sql2='INSERT INTO item_themes (theme_code, item_id) VALUES ($1, $2);'
+      values=[@theme_code, @id]
+      SqlRunner.run(sql2, values)
+    end
 # originally tried to store multiple themes using an array, which seemed like it almost worked.
 # abandoned this approach for a join table now. Keeping code commented out below for now
     # this is the correct syntax, found using Postico:

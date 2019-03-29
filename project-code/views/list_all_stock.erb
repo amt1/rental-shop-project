@@ -1,5 +1,7 @@
 <h2>Complete Stock List</h2>
 <% stock_items_array = StockItem.list_all_with_sizes_and_status %>
+<% stock_items_array = StockItem.list_all_with_sizes_status_and_themes %>
+
 <table class="data" id="all-stock" cellspacing="5" cellpadding="5">
   <tr>
     <th headers="id">Stock ID</th>
@@ -35,8 +37,8 @@
 <!--    <td><%stock_item[3]%></td> --><!-- measurements -->
 
 <!-- <td><%stock_item[11]%></td> --><!-- theme code -->
-<td><%=stock_item[11]%></td> <!-- theme type -->
-<td><%=stock_item[12]%></td> <!-- theme -->
+<td><%=stock_item[12]%></td> <!-- theme type -->
+<td><%=stock_item[13]%></td> <!-- theme -->
 <!--    <td><%stock_item[4]%></td> --><!-- cleaning instructions -->
 <!--    <td><%stock_item[5]%></td> --><!-- status (code) -->
 <td><%=stock_item[10]%></td> <!-- status meaning -->

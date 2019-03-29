@@ -7,7 +7,7 @@
       <legend>Enter Details:</legend>
       <br class="clear" />
 
-      <label for="name">Name</label>
+      <label for="name">Costume Name</label>
       <input type="text" id="name" name="name" size="50">
 
       <br class="clear" />
@@ -44,7 +44,16 @@
 <input type = "radio" name="colour" value="White">White
 <br class="clear" />
 <br class="clear" />
+<% themes_array=Theme.list_for_dropdown %>
+<label for="theme_code">Choose Theme:</label>
+<select class="" id="theme-code" name="theme_code">
+  <% themes_array.each do |theme| %>
+  <option value="<%=theme.id%>"><%=theme.theme_type%>: <%=theme.theme%></option>
+  <% end %>
+  <br class="clear" />
+  <br class="clear" />
 
+</select>
 <label for="price">Price</label>
 <input type="number" name="price" id = "price">
 <div class="right">
