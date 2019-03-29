@@ -76,7 +76,8 @@ right: 20px;
   background-color: white;
   color: black;
   border: 1px solid black;
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 5px;
   text-align: center;
   line-height: 1.5em;
   font-size: 1.1em;
@@ -272,15 +273,20 @@ h3 {
 
 /* Forms */
 
+form {
+  margin-bottom: 0.8em;
+}
 form input, textarea {
-  font-size: 1.5em;
-  line-height: 1.5em;
+  font-size: 1.2em;
+  line-height: 1.2em;
   color: black;
-  padding: 1em;
+  padding: 0.5em;
 }
 label {
-  margin-top: 0.5em;
+  margin-top: 1em;
   padding-top: 1em;
+  font-size: 1.2em;
+
 }
 div.formcontainer {
   width: 80%;

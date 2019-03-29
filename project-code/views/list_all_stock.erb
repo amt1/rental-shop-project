@@ -52,6 +52,8 @@
     <input type="submit" class="smallwhitebutton" value="View Rentals" />
 </form></td>
 <td><form method="post" action="/crms/stock_items/rent">
+  <input type="hidden" name="price" value ="<%=stock_item[7]%>" />
+
   <input type="hidden" name="id" value ="<%=stock_item[0]%>" />
   <input type="submit" class="smallwhitebutton" value="Rent" />
 </form></td>

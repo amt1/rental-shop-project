@@ -103,6 +103,18 @@ post '/crms/rentals/process_return' do
   redirect '/crms/rentals/current_rentals_list'
 end
 
+post '/crms/rentals/choose_rental_customer' do
+  @stock_item_id = params[:stock_item_id]
+  @price = params[:price]
+  @customer_id=params[:customer_id]
+  @customer_name=params[:customer_name]
+  @customer_phone=params[:customer_phone]
+  @customer_email=params[:customer_email]
+  # binding.pry
+  erb(:choose_rental_customer)
+end
+
+
 get '/crms/rentals' do
   erb(:rentals_menu)
 end
@@ -173,4 +185,10 @@ post '/crms/stock_items/update_stock_item' do
   @update_stock_item.set_themes([params[:theme_code]])
   @update_stock_item.update
   redirect '/crms/stock_items/list_all_stock'
+end
+
+post '/crms/stock_items/rent' do
+  @stock_item_id = params[:id]
+  @price = params[:price]
+erb(:find_rental_customer)
 end

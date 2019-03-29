@@ -1,0 +1,39 @@
+<h2>Rental: Look up Customer</h2>
+
+<div class=formcontainer">
+  <div class="floatright half">
+
+  <form method="post" id="lookup-rental-customer-form" action="/crms/rentals/choose_rental_customer" />
+    <fieldset>
+      <legend>Search by any of these: </legend>
+      <label for="customer_id"><strong>Customer ID: </strong></label>
+      <input type="text" name="customer_id" value="" id="id" />
+      <br class="clear" />
+      <label for="name"><strong>Customer Name: </strong></label>
+      <input type="text" name="customer_name" value="" id="name" />
+      <table><tr><td>
+        <br class="clear" />
+
+      <label for="phone">Phone: </label>
+      </td><td>
+      <input type="text" name="customer_phone" value="" id="phone" maxlength="15" />
+      </td></tr>
+      <tr><td>      <br class="clear" />
+<label for="email">Email: </label></td>
+        <td>
+      <input type="text" name="customer_email" value="" id="email" />
+      </td></tr></table>
+    </fieldset>
+    <div class="right">
+      <input type="hidden" name="stock_item_id" value="<%=@stock_item_id%>" />
+      <input type="hidden" name="price" value="<%=@price%>" />
+      <br class="clear" />
+
+      <input type="submit" class="darkredbutton" value="Look up Customer" />
+    </div>
+  </form>
+  </div> <!-- end right half div -->
+    <div class="floatleft half center">
+      <img src="/photos/tardis-welcome-650.jpg" alt="Tardis customer photo" style="width: 400px; height: 500px;" />
+    </div> <!-- end left half div -->
+</div> <!-- end formcontainer -->

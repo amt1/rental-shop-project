@@ -69,6 +69,7 @@
 <input type="number" name="price" id = "price" value="<%=@my_stock_item.price%>">
 </fieldset>
       <div>
+
         <div class="floatright right">
 
           <input type="hidden" name="id" value="<%=@my_stock_item.id%>" />
@@ -76,6 +77,14 @@
        <input type="submit" class="darkredbutton floatright" value="Update" />
         </form>
         </div>
+        <div class="floatright right">
+          <form method="post" action="/crms/stock_items/rent">
+            <input type="hidden" name="price" value ="<%=@my_stock_item.price%>" />
+
+            <input type="hidden" name="id" value ="<%=@my_stock_item.id%>" />
+            <input type="submit" class="darkredbutton" value="Rent" />
+          </form>
+          </div>
         <div class="left">
           <form method="post" action="/crms/stock_items/delete_stock_item" >
 
