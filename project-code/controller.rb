@@ -105,16 +105,52 @@ end
 
 post '/crms/rentals/choose_rental_customer' do
   @stock_item_id = params[:stock_item_id]
-  @price = params[:price]
+  @price = params[:price].to_i
   @customer_id=params[:customer_id]
   @customer_name=params[:customer_name]
   @customer_phone=params[:customer_phone]
   @customer_email=params[:customer_email]
+  @theatre=params[:theatre]
+  @my_options={
+    'id' => @customer_id,
+    'name' => @customer_name,
+    'phone' => @customer_phone,
+    'email' => @customer_email,
+  }
   # binding.pry
-  erb(:choose_rental_customer)
+  @found_customers=Customer.find_for_rental(@my_options)
+  # test value
+  @customer_id=1
+
+  # binding.pry
+erb(:confirm_rental)
+#  erb(:choose_rental_customer)
 end
 
+post '/crms/rentals/confirm' do
 
+end
+
+post '/crms/rentals/create_rental' do
+  @theatre=params[:theatre]
+  @stock_item_id = params[:stock_item_id]
+  @customer_id=params[:customer_id]
+  @rental_date = params[:rental_date]
+  @return_due_date = params[:return_due_date]
+  @return_code = 1
+  @my_new_rental = {
+    'stock_item_id' => @stock_item_id,
+    'customer_id' => @customer_id,
+    'rental_date' => @rental_date,
+    'return_due_date' => @return_due_date,
+    'return_code' => @return_code,
+    'theatre' => @theatre
+  }
+  @created_rental = Rental.new(@my_new_rental)
+  @created_rental.save
+  redirect '/crms/rentals/current_rentals_list'
+
+end
 get '/crms/rentals' do
   erb(:rentals_menu)
 end

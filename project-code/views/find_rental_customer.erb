@@ -22,12 +22,18 @@
 <label for="email">Email: </label></td>
         <td>
       <input type="text" name="customer_email" value="" id="email" />
-      </td></tr></table>
+      </td></tr>
+    <tr><td colspan="2">  <br  />
+      <label for="theatre"><strong>Is this a Theatre Rental? </strong></label>
+      <br class="clear" /><br />
+      <input type ="radio" name="theatre" value=true />Yes
+      <input type ="radio" name="theatre" value=false />No
+      <br /></td></tr></table>
     </fieldset>
     <div class="right">
       <input type="hidden" name="stock_item_id" value="<%=@stock_item_id%>" />
       <input type="hidden" name="price" value="<%=@price%>" />
-      <br class="clear" />
+
 
       <input type="submit" class="darkredbutton" value="Look up Customer" />
     </div>

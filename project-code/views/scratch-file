@@ -1,0 +1,10 @@
+
+<% customers_array=@found_customers %>
+<form method="post" id="choose-customer-form" action="/crms/rentals/confirm">
+<label for="customer_id">Choose Customer:</label>
+<select class="" id="customer_id" name="customer_id">
+  <% @found_customers.each do |customer| %>
+  <option value="<%=customer.id%>"><%=customer.name%>, <%=customer.get_phone%>, <%=customer.get_email%></option>
+  <% end %>
+  <br class="clear" />
+</select>

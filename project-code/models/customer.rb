@@ -105,6 +105,15 @@ sql = 'SELECT *  FROM customers WHERE name = $1;'
     return customer_list
   end
 
+def self.find_for_rental(options)
+  found_customers=[]
+  search_id = options['id'].to_i if options['id']
+  sql="SELECT * FROM customers WHERE id=$1 OR name=$2 OR phone=$3 OR email =$4";
+  values=[search_id, options['name'], options['phone'], options['email']]
+  found_customers << SqlRunner.run(sql, values).map { |customer| Customer.new(customer) }
+  return found_customers
+end
+
   def self.delete_all
     sql = 'DELETE FROM customers;'
     SqlRunner.run(sql)

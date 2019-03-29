@@ -12,11 +12,11 @@ Magically confirmed customer with ID = 1!
 
 <br class="clear" />
 </td></tr><tr><td>
-<% total_price = 0 %>
+<% @total_price = 0 %>
 <% if @theatre == true %>
   <% rental_length = 7 %>
   <% rental_type = 'Theatre' %>
-  <% rate = @price / 2 %>
+  <% rate = round(@price / 2) %>
 <% else %>
   <% rental_length = 2 %>
   <% rental_type = 'Personal' %>
@@ -34,10 +34,21 @@ Magically confirmed customer with ID = 1!
 <h4>Total Price:</h4>
 </td></tr><tr><td>
 
-<% total_price = rate * rental_length %>
+<% @total_price = rate * rental_length %>
 <%=sprintf("£%2.2f", @total_price)%>
 </td></tr></table>
 <br class="clear" />
 <br />
+<form method="post" action='/crms/rentals/create_rental'>
+  <input type="hidden" name="rental_date" value="<%=Date.today.strftime('%Y-%m-%d') %>" />
+  <% if @theatre %>
+  <input type="hidden" name="return_due_date" value="<%=(Date.today+7).strftime('%Y-%m-%d') %>" />
+<% else %>
+  <input type="hidden" name="return_due_date" value="<%=(Date.today+2).strftime('%Y-%m-%d') %>" />
+  <% end %>
+  <input type="hidden" name="customer_id" value="<%=@customer_id%>" />
+  <input type="hidden" name="stock_item_id" value="<%=@stock_item_id%>" />
+  <input type="hidden" name="theatre" value="<%=@theatre%>" />
+
  <input type = "submit" class="darkredbutton" value="Confirm"/>
 </form>
