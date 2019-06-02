@@ -1,5 +1,4 @@
 require_relative('../db/sql_runner.rb')
-require('pry-byebug')
 
 class Theme
 

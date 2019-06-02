@@ -4,7 +4,6 @@ require( 'minitest/rg' )
 require_relative( '../models/stock_item.rb' )
 require_relative( '../models/customer.rb' )
 require('date')
-require('pry')
 
 class TestRental < MiniTest::Test
 
@@ -36,7 +35,7 @@ class TestRental < MiniTest::Test
     @baby_yoda.save
     @redshirt.save
     @customer1 = {
-      'name' => 'Stanley Treshansky',
+      'name' => 'Stanley T',
       'phone' => '555-1234',
       'email' => 'stanley@fakeemail.com',
       'address' => '1 The Road, Happytown',
@@ -44,7 +43,7 @@ class TestRental < MiniTest::Test
       'warnings' => 0
     }
     @customer2 = {
-      'name' => 'Rolf Treshansky',
+      'name' => 'Rolf T',
       'phone' => '555-5678',
       'email' => 'rolf@fakeemail.com',
       'address' => '2 The Road, Happytown',
@@ -52,7 +51,7 @@ class TestRental < MiniTest::Test
       'warnings' => 1
     }
     @customer3 = {
-      'name' => 'Tommy Treshansky',
+      'name' => 'Tommy T',
       'phone' => '555-3456',
       'email' => 'tommy@fakeemail.com',
       'address' => '3 The Road, Happytown',
@@ -112,7 +111,7 @@ def test_make_these_save
   @stanley_redshirt.save
   @stanley_yoda.save
   @tommy_yoda.save
-end 
+end
 # def test_return_rental
 #   @tommy_yoda.save
 #   @baby_yoda.save
@@ -121,7 +120,6 @@ end
 #   @tommy_yoda.return_rental(2,@baby_yoda,1)
 #   assert_equal(2, @tommy_yoda.return_code )
 #   assert_equal(1, @baby_yoda.status)
-# # binding.pry
 # end
 
 
@@ -141,14 +139,12 @@ end
   #   @tommy_yoda.save
   #   # p Rental.list_all
   #   @test_rental =  Rental.find_by_id(@stanley_redshirt.id)
-  #   # binding.pry
   #   assert_equal(@redshirt.id, @test_rental.get_stock_item_id)
   # end
   # def test_list_current_rentals_with_name
   #   rentals_hash = Rental.list_current_rentals_with_names
   #   # p rentals_hash
   #   # p rentals_hash.map(&:values)
-  #   # binding.pry
   #
   # end
   #
@@ -165,7 +161,6 @@ end
   #   @stanley_redshirt.update
   #   assert_equal(2, @stanley_redshirt.return_code)
   #   assert_equal('Returned on time, all ok', @stanley_redshirt.get_return_status_msg)
-  #   # binding.pry
   # end
   #
   # def test_rental_delete_all

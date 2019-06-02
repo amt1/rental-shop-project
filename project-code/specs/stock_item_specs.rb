@@ -1,7 +1,6 @@
 require( 'minitest/autorun' )
 require( 'minitest/rg' )
 require_relative( '../models/stock_item.rb' )
-require('pry')
 
 class TestStockItem < MiniTest::Test
 
@@ -49,7 +48,6 @@ class TestStockItem < MiniTest::Test
 
   def test_get_status_msg
     # p @my_test_costume.get_status_msg
-    # binding.pry
     assert_equal('In stock, available', @my_test_costume.get_status_msg)
   end
   #
@@ -120,13 +118,11 @@ end
   #   @redshirt.update
   #   assert_equal('3', StockItem.find_by_id(@redshirt.id).price)
   #
-  # # binding.pry
   # end
 
   # def test_get_item_themes
   #   test_item=StockItem.find_by_id(1)
   #   # p test_item.get_themes_list_names
-  # # binding.pry
   #   assert_equal(['Sci Fi','Star Wars'], test_item.get_themes_list_names)
   # end
 

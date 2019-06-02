@@ -1,12 +1,11 @@
 require( 'minitest/autorun' )
 require_relative( '../models/customer.rb' )
-require('pry')
 
 class TestCustomer < MiniTest::Test
 
   def setup
     @customer1 = {
-      'name' => 'Stanley Treshansky',
+      'name' => 'Stanley T',
       'phone' => '555-1234',
       'email' => 'stanley@fakeemail.com',
       'address' => '1 The Road, Happytown',
@@ -14,7 +13,7 @@ class TestCustomer < MiniTest::Test
       'warnings' => 0
     }
     @customer2 = {
-      'name' => 'Rolf Treshansky',
+      'name' => 'Rolf T',
       'phone' => '555-5678',
       'email' => 'rolf@fakeemail.com',
       'address' => '2 The Road, Happytown',
@@ -22,7 +21,7 @@ class TestCustomer < MiniTest::Test
       'warnings' => 1
     }
     @customer3 = {
-      'name' => 'Tommy Treshansky',
+      'name' => 'Tommy T',
       'phone' => '555-3456',
       'email' => 'tommy@fakeemail.com',
       'address' => '3 The Road, Happytown',
@@ -46,7 +45,7 @@ class TestCustomer < MiniTest::Test
   end
 
   def test_customer_created
-    assert_equal('Stanley Treshansky', @my_test_customer.name)
+    assert_equal('Stanley T', @my_test_customer.name)
     assert_nil(@my_test_customer.id)
   end
 
@@ -73,7 +72,6 @@ class TestCustomer < MiniTest::Test
     # p @my_test_customer
     # # p 'found by id...'
     # p Customer.find_by_id(@my_test_customer.id)
-    # binding.pry
     assert_equal(@my_test_customer.name, Customer.find_by_id(@my_test_customer.id).name)
 
     # assert_equal(@my_test_customer, Customer.find_by_id(@my_test_customer.id))
@@ -113,7 +111,6 @@ class TestCustomer < MiniTest::Test
     @stanley.save
     @rolf.save
     @tommy.save
-    # binding.pry
     assert_equal(@stanley.id, Customer.find_by_name(@stanley.name).first.id)
   end
 
@@ -123,7 +120,6 @@ class TestCustomer < MiniTest::Test
     @rolf.set_phone('555-1234')
     @rolf.update
     assert_equal('555-1234', @rolf.get_contact_info[0])
-# binding.pry
   end
 
   def test_update_customer__invalid_email
@@ -131,9 +127,7 @@ class TestCustomer < MiniTest::Test
     # assert_equal('rolf@fakeemail.com', @rolf.get_contact_info[1])
     # @rolf.set_email('rolffakeemail.com')
     # @rolf.update
-    # # binding.pry
     # assert_equal('rolf@fakeemail.com', @rolf.get_contact_info[0])
-# binding.pry
 
 # Resut: The database refuses an invalid email address.
 # To use this feature safely I will need to add the same email validation checks

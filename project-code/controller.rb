@@ -1,13 +1,11 @@
 require( 'sinatra' )
-require( 'sinatra/contrib/all' )
-require( 'pry-byebug' )
+require( 'sinatra/contrib/all' ) if development?
 require( 'date')
 require_relative( './models/rental.rb')
 require_relative( './models/customer.rb')
 require_relative( './models/stock_item.rb')
 require_relative( './models/theme.rb')
 
-also_reload('./models/*')
 # home page is at http://localhost:4567/crms
 
 get '/crms' do
@@ -97,7 +95,6 @@ post '/crms/rentals/process_return' do
   @rental_id=params[:rental_id]
   @my_stock_item = StockItem.find_by_id(@stock_item_id)
   @current_rental = Rental.find_by_id(@rental_id)
-#  binding.pry
   @current_rental.return_rental(@return_code, @my_stock_item, @item_status)
   @msg="You returned "+" #{@my_stock_item.name}"
   redirect '/crms/rentals/current_rentals_list'
@@ -117,12 +114,10 @@ post '/crms/rentals/choose_rental_customer' do
     'phone' => @customer_phone,
     'email' => @customer_email,
   }
-  # binding.pry
   @found_customers=Customer.find_for_rental(@my_options)
   # test value
   @customer_id=1
 
-  # binding.pry
 erb(:confirm_rental)
 #  erb(:choose_rental_customer)
 end
@@ -161,12 +156,10 @@ end
 
 post '/crms/stock_items/costume_rental_history' do
   @stock_item_id = params[:id]
-  # binding.pry
   erb(:costume_rental_history)
 end
 post '/crms/stock_items/list_by_theme' do
   @theme_code = params[:theme_code]
-  # binding.pry
   erb(:list_by_theme)
 end
 get '/crms/stock_items/stock_new' do

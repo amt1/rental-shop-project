@@ -1,5 +1,4 @@
 require_relative('../db/sql_runner.rb')
-# require('pry')
 
 class Customer
 
@@ -129,7 +128,6 @@ end
     # sql = "UPDATE customers SET $1 = $2 WHERE id = $3;"
   # tested in Postico and this works: UPDATE customers SET phone = '555-1234' WHERE id = 278;
     # values=[column, contents, @id]
-    # binding.pry
     sql = 'UPDATE customers SET (name, phone, email, address, account_balance, warnings)
     = ($1, $2, $3, $4, $5, $6) WHERE id = $7;'
     values = [@name, @phone, @email, @address, @account_balance, @warnings, @id]
